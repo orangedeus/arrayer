@@ -1,0 +1,135 @@
+
+> arrayer@0.0.0 start /home/jpchanchico/arrayer
+> node ./bin/www
+
+
+> arrayer@0.0.0 start /home/jpchanchico/arrayer
+> node ./bin/www
+
+[0mGET /array [36m304 [0m10.220 ms - -[0m
+[0mGET /favicon.ico [33m404 [0m430.325 ms - 1072[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m31.281 ms - 1922[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m3.498 ms - 2012[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m2.625 ms - 2012[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [31m500 [0m47.149 ms - 1216[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [31m500 [0m27.522 ms - 1216[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m4.191 ms - 2137[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [31m500 [0m42.776 ms - 1216[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [31m500 [0m34.903 ms - 1216[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m1.153 ms - 2115[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m3.117 ms - 2013[0m
+[0mGET /array [36m304 [0m3.192 ms - -[0m
+
+> arrayer@0.0.0 start /home/jpchanchico/arrayer
+> node ./bin/www
+
