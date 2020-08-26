@@ -133,3 +133,366 @@
 > arrayer@0.0.0 start /home/jpchanchico/arrayer
 > node ./bin/www
 
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m30.847 ms - 3834[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m3.429 ms - 3917[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m2.579 ms - 3917[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m2.654 ms - 3824[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m2.529 ms - 3914[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m3.980 ms - 3914[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m2.092 ms - 3797[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m2.762 ms - 3797[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m1.383 ms - 3997[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m2.353 ms - 3186[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m1.947 ms - 3983[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m1.596 ms - 3975[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m3.722 ms - 3969[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m2.377 ms - 3969[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m1.460 ms - 4361[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m2.919 ms - 5153[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m3.311 ms - 3180[0m
+[0mPOST /array [33m400 [0m523.320 ms - 1010[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m7.919 ms - 5127[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m3.316 ms - 5127[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m4.597 ms - 5127[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m1.737 ms - 5127[0m
+{}
+[0mPOST /array [31m500 [0m39.330 ms - 1220[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m2.640 ms - 4375[0m
+{}
+[0mPOST /array [31m500 [0m18.502 ms - 1220[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m2.595 ms - 6044[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m1.231 ms - 4860[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m3.329 ms - 4751[0m
+{ hits: 
+   [ { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] },
+     { _source: [Object] } ] }
+[0mPOST /array [32m200 [0m4.687 ms - 10278[0m
+[0mGET /array [32m200 [0m8.087 ms - 24[0m
+[0mGET /favicon.ico [33m404 [0m40.977 ms - 1072[0m
+[0mGET /array [32m200 [0m1.729 ms - 24[0m
+[0mGET /favicon.ico [33m404 [0m33.152 ms - 1072[0m
+[0mGET /array/squid [33m404 [0m22.733 ms - 1115[0m
+[0mGET /stylesheets/style.css [32m200 [0m5.679 ms - 111[0m
+[0mGET /array/squid [33m404 [0m10.107 ms - 1115[0m
+[0mGET /stylesheets/style.css [36m304 [0m1.468 ms - -[0m
+
+> arrayer@0.0.0 start /home/jpchanchico/arrayer
+> node ./bin/www
+
