@@ -49,6 +49,12 @@ router.post('/host', function (req, res, next) {
   json_resp.length = arr.hits.length
   res.type('json').send(json_resp)
 })
+
+router.post('/virustotal', function (req, res, next) {
+  arr = req.body
+  console.log(arr)
+})
+
 router.post('/pihole', function (req, res, next) {
   arr = req.body
   console.log(arr)
