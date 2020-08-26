@@ -32,6 +32,23 @@ router.post('/squid', function (req, res, next) {
   res.type('json').send(json_resp)
 })
 
+router.post('/host', function (req, res, next) {
+  arr = req.body
+  console.log(arr)
+  json_resp = {}
+  hits_arr = []
+  for (i = 0; i < arr.hits.length; i++) {
+    ipv4 = arr.hits[i]._source.host.ip[0]
+    ipv6 = arr.hits[i]._source.host.ip[1]
+    hostname = arr.hits[i]._source.host.hostname
+    executable = arr.hits[i]._source.process.executable
+    sha1 = arr.hits[i]._source.process.hash.sha1
+    hits_arr.push({ hostname: hostname, ipv4: ipv4, ipv6: ipv6, executable: executable, sha1: sha1 })
+  };
+  json_resp.array = hits_arr
+  json_resp.length = arr.hits.length
+  res.type('json').send(json_resp)
+})
 router.post('/pihole', function (req, res, next) {
   arr = req.body
   console.log(arr)
