@@ -70,10 +70,12 @@ router.post('/pihole', function (req, res, next) {
     qn = arr.hits[i]._source.dns.question.name
     hits_arr.push({ source_ip: si, question_type: qt, question_class: qc, question_name: qn })
     ac = arr.hits[i]._source.dns.answers_count
-    if (ac > 0 && arr.hits[i].dns.hasOwnProperty('resolved_ip')) {
+    if (ac > 0) {
       ri = arr.hits[i]._source.dns.resolved_ip
-      for (j = 0; j < ri.length; j++) {
-        ri_arr.push({ ip: ri[j] })
+      if (ri != undefined){
+        for (j = 0; j < ri.length; j++) {
+          ri_arr.push({ ip: ri[j] })
+        }
       }
       answers = arr.hits[i]._source.dns.answers
       console.log(answers)
