@@ -1,3 +1,4 @@
+const fs = require('fs');
 
 var express = require('express')
 var router = express.Router()
@@ -80,12 +81,21 @@ router.post('/pihole', function (req, res, next) {
         answer_arr.push(answers[j])
       }
     }
+    
   };
   json_resp.data = hits_arr
   json_resp.resolved_ip = ri_arr
   json_resp.answers = answer_arr
   json_resp.length = arr.hits.length
   res.type('json').send(json_resp)
+  // write to a new file named 2pac.txt
+  fs.writeFile('test_report.txt', JSON.stringify(json_resp), (err) => {
+    // throws an error, you could also catch it here
+    if (err) throw err;
+
+    // success case, the file was saved
+    console.log('Lyric saved!');
+  });
 })
 
 module.exports = router
