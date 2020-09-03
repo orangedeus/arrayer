@@ -42,8 +42,16 @@ router.post('/virustotal', function (req, res, next) {
         //console.log(response.data);
         console.log(response.data.votes);
         report = report + "threatcrowd votes: " + response.data.votes + "\n"
-        //console.log(response.data.explanation);
-        //report = report + JSON.stringify(response);
+
+        // write report
+        fs.appendFile("./reports/" + formatted_date + ".txt", report, (err) => {
+          // throws an error, you could also catch it here
+          if (err) throw err;
+          console.log(report);
+          // success case, the file was saved
+          console.log('Report saved!');
+        });
+        
       })
       .catch(error => {
         console.log(error);
@@ -51,13 +59,7 @@ router.post('/virustotal', function (req, res, next) {
 
 
     // create report
-    fs.appendFile("./reports/" + formatted_date + ".txt", report, (err) => {
-      // throws an error, you could also catch it here
-      if (err) throw err;
-      console.log(report);
-      // success case, the file was saved
-      console.log('Report saved!');
-    });
+    
 
   }
 
