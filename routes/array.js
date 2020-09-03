@@ -100,7 +100,7 @@ router.post('/pihole', function (req, res, next) {
     if (err) throw err;
 
     // success case, the file was saved
-    console.log('Lyric saved!');
+    console.log('Report saved!');
   });
 })
 
