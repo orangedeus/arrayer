@@ -39,9 +39,11 @@ router.post('/virustotal', function (req, res, next) {
     axios
       .get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + dns_question_name)
       .then(response => {
-        console.log(response.data.url);
-        console.log(response.data.explanation);
-        report = report + JSON.stringify(response);
+        //console.log(response.data);
+        console.log(response.data.votes);
+        report = report + "threatcrowd votes: " + response.data.votes + "\n"
+        //console.log(response.data.explanation);
+        //report = report + JSON.stringify(response);
       })
       .catch(error => {
         console.log(error);
@@ -52,7 +54,7 @@ router.post('/virustotal', function (req, res, next) {
     fs.appendFile("./reports/" + formatted_date + ".txt", report, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
-
+      console.log(report);
       // success case, the file was saved
       console.log('Report saved!');
     });
