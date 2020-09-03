@@ -35,13 +35,16 @@ router.post('/virustotal', function (req, res, next) {
       var report = "-----------------------------------------------------------\n" +
                    "source: " + source_ip + "\n" +
                    "question: " + dns_question_name + "\n"
+                   "resolved_ip: " + resolved_ip.toString() + "\n"
 
       // query threatcrowd API
       var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + dns_question_name)
-      report = report + response.data.votes
+      report = report 
+               "threatcrowd_votes: " + response.data.votes + "\n"
 
       // aggregate all reports
-      reports = reports + report
+      reports = reports + report + "\n"
+      console.log(reports)
 
       fs.appendFile("./reports/" + formatted_date + ".txt", report, (err) => {
         // throws an error, you could also catch it here
@@ -54,10 +57,11 @@ router.post('/virustotal', function (req, res, next) {
   };
 
   loop(data, reports).then(r => {
-    const response = {
-      message: r
-    }
-    res.type('json').send(response)
+    // const response = {
+    //   message: r
+    // }
+    // res.type('json').send(response)
+    res.send(r)
   });
 });
 //router.post('/threat_crowd/ip')
