@@ -23,7 +23,7 @@ router.post('/virustotal', function (req, res, next) {
     console.log('datetime: ' + formatted_date);
 
     // parse data
-    var source_ip = data[i]._source.source.ip
+    var source_ip = data[i].source.ip
     var dns_question_name = data[i].dns.question.name
     var answers_count = data[i].dns.answers_count
     if (answers_count > 0) {
