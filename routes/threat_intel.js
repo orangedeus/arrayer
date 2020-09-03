@@ -29,17 +29,19 @@ router.post('/virustotal', function (req, res, next) {
       var source_ip = data[i].source.ip
       var dns_question_name = data[i].dns.question.name
       var answers_count = data[i].dns.answers_count
-      var resolved_ip = data[i].dns.resolved_ip
 
       // report generation
       var report = "-----------------------------------------------------------\n" +
                    "source: " + source_ip + "\n" +
-                   "question: " + dns_question_name + "\n"
-                   "resolved_ip: " + resolved_ip.toString() + "\n"
+                   "question: " + dns_question_name + "\n" + 
+                   "answers_count: " + answers_count + "\n" + 
+      if (data[i].dns.resolved_ip != undefined):
+        var resolved_ip = data[i].dns.resolved_ip
+        report = report + "resolved_ip: " + resolved_ip.toString() + "\n"
 
       // query threatcrowd API
       var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + dns_question_name)
-      report = report 
+      report = report + 
                "threatcrowd_votes: " + response.data.votes + "\n"
 
       // aggregate all reports
@@ -56,12 +58,16 @@ router.post('/virustotal', function (req, res, next) {
     return reports;
   };
 
-  loop(data, reports).then(r => {
+  loop(data, reports)
+  .then(r => {
     // const response = {
     //   message: r
     // }
     // res.type('json').send(response)
     res.send(r)
+  })
+  .catch(err => {
+    res.send(err)
   });
 });
 //router.post('/threat_crowd/ip')
