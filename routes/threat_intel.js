@@ -1,6 +1,7 @@
 var dateTime = require('node-datetime');
 var express = require('express')
 const fs = require('fs');
+const { report } = require('../app');
 var router = express.Router()
 router.use(express.json())
 
@@ -11,25 +12,39 @@ router.get('/', function (req, res, next) {
 })
 
 router.post('/virustotal', function (req, res, next) {
-  body = req.body;
+  data = req.body;
   console.log(body);
 
-  // get datetime 
-  var dt = dateTime.create();
-  var formatted_date = dt.format('Y-m-d-H-M-S');
-  console.log('datetime: ' + formatted_date);
-  // query virustotal API
-  // create report
-  fs.writeFile('./reports/test_report.txt', JSON.stringify(body), (err) => {
-    // throws an error, you could also catch it here
-    if (err) throw err;
+  // iterate through list of _source
+  for (let i=0; i < data.length; i++) {
+    // get datetime 
+    var dt = dateTime.create();
+    var formatted_date = dt.format('Y-m-d-H-M-S');
+    console.log('datetime: ' + formatted_date);
 
-    // success case, the file was saved
-    console.log('Report saved!');
-  });
+    // parse data
+    var source_ip = data[i]._source
+    var dns_question_name = data[i].dns.question.name
+    var answers_count = data[i].dns.answers_count
+    if (answers_count > 0) {
+      var resolved_ip = data[i].dns.resolved_ip
+    }
+
+    report = "artifacts? " + source_ip + dns_question_name
+
+    // TODO: query virustotal API
+    // create report
+    fs.writeFile("./reports/$formatted_date.txt", report, (err) => {
+      // throws an error, you could also catch it here
+      if (err) throw err;
+
+      // success case, the file was saved
+      console.log('Report saved!');
+    });
+  }
 
   const response = {
-    message: 'Should be some IP'
+    message: 'See Reports at reports directory'
   }
   res.type('json').send(response)
 

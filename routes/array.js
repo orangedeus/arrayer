@@ -67,31 +67,8 @@ router.post('/pihole', function (req, res, next) {
   for (i = 0; i < arr.hits.length; i++) {
     _source = arr.hits[i]._source;
     _source_arr.push(_source);
-    // si = arr.hits[i]._source.source.ip
-    // qt = arr.hits[i]._source.dns.question.type
-    // qc = arr.hits[i]._source.dns.question.class
-    // qn = arr.hits[i]._source.dns.question.name
-    // hits_arr.push({ source_ip: si, question_type: qt, question_class: qc, question_name: qn })
-    // ac = arr.hits[i]._source.dns.answers_count
-    // if (ac > 0) {
-    //   ri = arr.hits[i]._source.dns.resolved_ip
-    //   if (ri != undefined){
-    //     for (j = 0; j < ri.length; j++) {
-    //       ri_arr.push({ ip: ri[j] })
-    //     }
-    //   }
-    //   answers = arr.hits[i]._source.dns.answers
-    //   console.log(answers)
-    //   for (j = 0; j < ac; j++) {
-    //     answer_arr.push(answers[j])
-    //   }
-    // }
   };
   json_resp.data = _source_arr
-  // json_resp.data = hits_arr
-  // json_resp.resolved_ip = ri_arr
-  // json_resp.answers = answer_arr
-  // json_resp.length = arr.hits.length
   json_resp.length = _source_arr.length
   res.type('json').send(json_resp)
   // write to a new file named 2pac.txt
