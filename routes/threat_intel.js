@@ -29,12 +29,13 @@ router.post('/virustotal', function (req, res, next) {
     if (answers_count > 0) {
       var resolved_ip = data[i].dns.resolved_ip
     }
+    console.log(resolved_ip.length)
 
     var report = "artifacts? " + source_ip + dns_question_name
 
     // TODO: query virustotal API
     // create report
-    fs.writeFile("./reports/" + formatted_date + ".txt", report, (err) => {
+    fs.appendFile("./reports/" + formatted_date + ".txt", report, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
 
