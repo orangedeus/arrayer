@@ -22,7 +22,7 @@ router.post('/virustotal', function (req, res, next) {
     for (let i = 0; i < data.length; i++) {
       // get datetime 
       var dt = dateTime.create();
-      var formatted_date = dt.format('Y-m-d-H-M-S');
+      var formatted_date = dt.format('Y-m-d-H-M');
       console.log('datetime: ' + formatted_date);
 
       // parse data
@@ -34,7 +34,7 @@ router.post('/virustotal', function (req, res, next) {
       var report = "-----------------------------------------------------------\n" +
                    "source: " + source_ip + "\n" +
                    "question: " + dns_question_name + "\n" + 
-                   "answers_count: " + answers_count + "\n" + 
+                   "answers_count: " + answers_count + "\n" 
       if (data[i].dns.resolved_ip != undefined) {
         var resolved_ip = data[i].dns.resolved_ip
         report = report + "resolved_ip: " + resolved_ip.toString() + "\n"
