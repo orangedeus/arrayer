@@ -15,7 +15,9 @@ router.get('/', function (req, res, next) {
 router.post('/virustotal', function (req, res, next) {
   data = req.body;
   console.log(data);
-
+  var report, vote
+  var reports = [];
+  var votes = [];
   // iterate through list of _source
   for (let i=0; i < data.length; i++) {
     // get datetime 
@@ -27,13 +29,9 @@ router.post('/virustotal', function (req, res, next) {
     var source_ip = data[i].source.ip
     var dns_question_name = data[i].dns.question.name
     var answers_count = data[i].dns.answers_count
-    if (answers_count > 0) {
-      var resolved_ip = data[i].dns.resolved_ip
+    if (data[i].dns.resolved_ip != undefined) {
+      var resolved_ip = 
     }
-
-    var report = "-----------------------------------------------------------\n" +
-                 "source: " + source_ip + "\n" +
-                 "question: " + dns_question_name + "\n" 
 
     // TODO: query threatcrowd API
     axios
@@ -41,26 +39,21 @@ router.post('/virustotal', function (req, res, next) {
       .then(response => {
         //console.log(response.data);
         console.log(response.data.votes);
-        report = report + "threatcrowd votes: " + response.data.votes + "\n"
-
-        // write report
-        fs.appendFile("./reports/" + formatted_date + ".txt", report, (err) => {
+        report = "-----------------------------------------------------------\n" +
+             "source: " + source_ip + "\n" +
+             "question: " + dns_question_name + "\n" +
+             "threatcrowd votes: " + response.data.votes + "\n"
+        fs.writeFile('.txt', JSON.stringify(json_resp), (err) => {
           // throws an error, you could also catch it here
           if (err) throw err;
-          console.log(report);
+
           // success case, the file was saved
           console.log('Report saved!');
         });
-        
       })
       .catch(error => {
         console.log(error);
       });
-
-
-    // create report
-    
-
   }
 
   const response = {
