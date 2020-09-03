@@ -1,6 +1,7 @@
 var dateTime = require('node-datetime');
 var express = require('express')
 const fs = require('fs');
+const axios = require('axios')
 //const { report } = require('../app');
 var router = express.Router()
 router.use(express.json())
@@ -30,12 +31,23 @@ router.post('/virustotal', function (req, res, next) {
       var resolved_ip = data[i].dns.resolved_ip
     }
 
-    var report = "-------------------------------------\n" +
+    var report = "-----------------------------------------------------------\n" +
                  "source: " + source_ip + "\n" +
-                 "question: " + dns_question_name + "\n" +
-                 "-------------------------------------\n"
+                 "question: " + dns_question_name + "\n" 
 
-    // TODO: query virustotal API
+    // TODO: query threatcrowd API
+    axios
+      .get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + dns_question_name)
+      .then(response => {
+        console.log(response.data.url);
+        console.log(response.data.explanation);
+        report = report + JSON.stringify(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+
     // create report
     fs.appendFile("./reports/" + formatted_date + ".txt", report, (err) => {
       // throws an error, you could also catch it here
@@ -44,6 +56,7 @@ router.post('/virustotal', function (req, res, next) {
       // success case, the file was saved
       console.log('Report saved!');
     });
+
   }
 
   const response = {
