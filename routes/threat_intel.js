@@ -17,21 +17,24 @@ router.post('/virustotal', function (req, res, next) {
   data = req.body;
   console.log(data);
   var reports = '';
+
+  // get datetime 
+  var dt = dateTime.create();
+  var formatted_date = dt.format('Y-m-d-H-M-S');
+  console.log('datetime: ' + formatted_date);
+
   // iterate through list of _source
   const loop = async function() {
+    var report = 'REPORT GENERATED AT: ' + formatted_date + "\n"
     for (let i = 0; i < data.length; i++) {
-      // get datetime 
-      var dt = dateTime.create();
-      var formatted_date = dt.format('Y-m-d-H-M');
-      console.log('datetime: ' + formatted_date);
-
       // parse data
       var source_ip = data[i].source.ip
       var dns_question_name = data[i].dns.question.name
       var answers_count = data[i].dns.answers_count
 
       // report generation
-      var report = "-----------------------------------------------------------\n" +
+      var report = report + 
+                   "--------------------------------------------------\n" +
                    "source: " + source_ip + "\n" +
                    "question: " + dns_question_name + "\n" + 
                    "answers_count: " + answers_count + "\n" 
@@ -65,7 +68,7 @@ router.post('/virustotal', function (req, res, next) {
     //   message: r
     // }
     // res.type('json').send(response)
-    res.send(r)
+    res.send('See report at http://10.150.0.7:3000/reports/'+formatted_date+'.txt')
   })
   .catch(err => {
     res.send(err)
