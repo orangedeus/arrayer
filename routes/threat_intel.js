@@ -33,7 +33,7 @@ router.post('/virustotal', function (req, res, next) {
       var answers_count = data[i].dns.answers_count
 
       // report generation
-      var report = report + 
+      report = report + 
                    "--------------------------------------------------\n" +
                    "source: " + source_ip + "\n" +
                    "question: " + dns_question_name + "\n" + 
