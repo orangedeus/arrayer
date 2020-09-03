@@ -16,9 +16,9 @@ router.get('/', function (req, res, next) {
 router.post('/virustotal', function (req, res, next) {
   data = req.body;
   console.log(data);
-  var reports = ''
+  var reports = '';
   // iterate through list of _source
-  const loop = async function (data, reports) {
+  const loop = async function() {
     for (let i = 0; i < data.length; i++) {
       // get datetime 
       var dt = dateTime.create();
@@ -50,17 +50,16 @@ router.post('/virustotal', function (req, res, next) {
         console.log('Report saved!');
       });
     }
-  }
+    return reports;
+  };
 
-  loop(data, reports)
-
-  const response = {
-    message: reports
-  }
-  res.type('json').send(response)
-
-})
-
+  loop(data, reports).then(r => {
+    const response = {
+      message: r
+    }
+    res.type('json').send(response)
+  });
+});
 //router.post('/threat_crowd/ip')
 
 module.exports = router
