@@ -35,9 +35,10 @@ router.post('/virustotal', function (req, res, next) {
                    "source: " + source_ip + "\n" +
                    "question: " + dns_question_name + "\n" + 
                    "answers_count: " + answers_count + "\n" + 
-      if (data[i].dns.resolved_ip != undefined):
+      if (data[i].dns.resolved_ip != undefined) {
         var resolved_ip = data[i].dns.resolved_ip
         report = report + "resolved_ip: " + resolved_ip.toString() + "\n"
+      }
 
       // query threatcrowd API
       var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + dns_question_name)
