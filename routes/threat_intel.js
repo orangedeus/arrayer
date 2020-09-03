@@ -29,7 +29,6 @@ router.post('/virustotal', function (req, res, next) {
     if (answers_count > 0) {
       var resolved_ip = data[i].dns.resolved_ip
     }
-    console.log(resolved_ip.length)
 
     var report = "artifacts? " + source_ip + dns_question_name
 
