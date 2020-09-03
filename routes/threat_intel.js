@@ -23,14 +23,17 @@ router.post('/virustotal', function (req, res, next) {
     console.log('datetime: ' + formatted_date);
 
     // parse data
-    var source_ip = data[i]._source
+    var source_ip = data[i]._source.ip
     var dns_question_name = data[i].dns.question.name
     var answers_count = data[i].dns.answers_count
     if (answers_count > 0) {
       var resolved_ip = data[i].dns.resolved_ip
     }
 
-    var report = "artifacts? " + source_ip + dns_question_name
+    var report = "-------------------------------------\n" +
+                 "source: " + source_ip + "\n" +
+                 "question: " + dns_question_name + "\n" +
+                 "-------------------------------------\n"
 
     // TODO: query virustotal API
     // create report
