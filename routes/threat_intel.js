@@ -1,7 +1,7 @@
 var dateTime = require('node-datetime');
 var express = require('express')
 const fs = require('fs');
-const { report } = require('../app');
+//const { report } = require('../app');
 var router = express.Router()
 router.use(express.json())
 
@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/virustotal', function (req, res, next) {
   data = req.body;
-  console.log(body);
+  console.log(data);
 
   // iterate through list of _source
   for (let i=0; i < data.length; i++) {
@@ -30,11 +30,11 @@ router.post('/virustotal', function (req, res, next) {
       var resolved_ip = data[i].dns.resolved_ip
     }
 
-    report = "artifacts? " + source_ip + dns_question_name
+    var report = "artifacts? " + source_ip + dns_question_name
 
     // TODO: query virustotal API
     // create report
-    fs.writeFile("./reports/$formatted_date.txt", report, (err) => {
+    fs.writeFile("./reports/" + formatted_date + ".txt", report, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
 
