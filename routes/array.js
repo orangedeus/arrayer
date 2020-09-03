@@ -66,7 +66,7 @@ router.post('/pihole', function (req, res, next) {
   _source_arr = []
   for (i = 0; i < arr.hits.length; i++) {
     _source = arr.hits[i]._source;
-    _source_arr.push(source);
+    _source_arr.push(_source);
     // si = arr.hits[i]._source.source.ip
     // qt = arr.hits[i]._source.dns.question.type
     // qc = arr.hits[i]._source.dns.question.class

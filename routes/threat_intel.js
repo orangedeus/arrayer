@@ -16,11 +16,11 @@ router.post('/virustotal', function (req, res, next) {
 
   // get datetime 
   var dt = dateTime.create();
-  var formatted = dt.format('Y-m-d-H-M-S');
+  var formatted_date = dt.format('Y-m-d-H-M-S');
   console.log('datetime: ' + formatted_date);
   // query virustotal API
   // create report
-  fs.writeFile('reports/test_report.txt', JSON.stringify(body), (err) => {
+  fs.writeFile('./reports/test_report.txt', JSON.stringify(body), (err) => {
     // throws an error, you could also catch it here
     if (err) throw err;
 
@@ -35,6 +35,6 @@ router.post('/virustotal', function (req, res, next) {
 
 })
 
-router.post('/threat_crowd/ip')
+//router.post('/threat_crowd/ip')
 
 module.exports = router
