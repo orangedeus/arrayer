@@ -194,7 +194,7 @@ router.post('/squid', function (req, res, next) {
                "\tundetected: " + stats.undetected + "\n"
 
       // virustotal API get IP information
-      const config = {
+      var config = {
         method: 'get',
         url: 'https://www.virustotal.com/api/v3/ip_addresses/' + destination_ip,
         headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
@@ -211,7 +211,7 @@ router.post('/squid', function (req, res, next) {
                "\tundetected: " + stats.undetected + "\n"
 
       // virustotal API get Domain information
-      const config = {
+      var config = {
         method: 'get',
         url: 'https://www.virustotal.com/api/v3/domains/' + url_domain,
         headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
