@@ -63,6 +63,7 @@ router.post('/pihole', function (req, res, next) {
           vote = 'non-malicious'
           break;
         default:
+          vote = 'no information'
           console.log('default');
       }
 
