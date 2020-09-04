@@ -22,12 +22,17 @@ router.post('/virustotal', function (req, res, next) {
   var dt = dateTime.create();
   var formatted_date = dt.format('Y-m-d-H-M-S');
   console.log('datetime: ' + formatted_date);
-
+  const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
   // iterate through list of _source
   const loop = async function() {
-    var report = 'REPORT GENERATED AT: ' + formatted_date + "\n"
+    reports = reports + 'REPORT GENERATED AT: ' + formatted_date + "\n"
+    var report = ''
+    console.log("YOOOOOOOOOOOOOOO: " + data.length)
     for (let i = 0; i < data.length; i++) {
       // parse data
+      report = ''
       var source_ip = data[i].source.ip
       var dns_question_name = data[i].dns.question.name
       var answers_count = data[i].dns.answers_count
@@ -49,21 +54,21 @@ router.post('/virustotal', function (req, res, next) {
                "threatcrowd_votes: " + response.data.votes + "\n"
 
       // aggregate all reports
-      reports = reports + report + "\n"
-      console.log(reports)
-
-      fs.appendFile("./reports/" + formatted_date + ".txt", report, (err) => {
-        // throws an error, you could also catch it here
-        if (err) throw err;
-        // success case, the file was saved
-        console.log('Report saved!');
-      });
+      console.log(i)
+      reports = reports + report
+      //await sleep(10)
     }
     return reports;
   };
 
   loop(data, reports)
   .then(r => {
+    fs.appendFile("./reports/" + formatted_date + ".txt", r, (err) => {
+      // throws an error, you could also catch it here
+      if (err) throw err;
+      // success case, the file was saved
+      console.log('Report saved!');
+    });
     // const response = {
     //   message: r
     // }
