@@ -96,6 +96,7 @@ router.post('/pihole', function (req, res, next) {
 
 router.post('/squid', function (req, res, next) {
   data = req.body;
+  console.log("iteration "+i)
   console.log(data);
   var reports = '';
 
@@ -175,6 +176,8 @@ router.post('/squid', function (req, res, next) {
       }
       report = report + 
                "IP_threatcrowd_votes: " + vote + "\n"
+      
+      console.log('VIRUSTOTAL QUERY STARTS HERE SHADJHASNDJHASDJKSAHDKJALSHDJKSALH')
 
       // virusTotal API get URL information
       var config = {
@@ -183,7 +186,6 @@ router.post('/squid', function (req, res, next) {
         headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
       }
       var response = await axios(config);
-
       stats = reponse.data.data.attributes.last_analysis_stats
       console.log(stats)
       report = report + 
@@ -231,7 +233,7 @@ router.post('/squid', function (req, res, next) {
 
 
       // aggregate all reports
-      console.log("iteration "+i)
+      
       reports = reports + report
       //await sleep(10)
     }
