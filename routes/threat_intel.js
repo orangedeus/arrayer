@@ -177,62 +177,58 @@ router.post('/squid', function (req, res, next) {
       report = report + 
                "IP_threatcrowd_votes: " + vote + "\n"
       
-      console.log('VIRUSTOTAL QUERY STARTS HERE SHADJHASNDJHASDJKSAHDKJALSHDJKSALH')
-
       // virusTotal API get URL information
       var config = {
         method: 'get',
         url: 'https://www.virustotal.com/api/v3/urls/' + url_b64,
         headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
       }
-      console.log("---1")
       var response = await axios(config);
       console.log(response)
       var stats = response.data.data.attributes.last_analysis_stats
-      console.log("--2")
       console.log(stats)
       report = report + 
                "virustotal_URL_analysis_stats: \n" +
-               "\tharmless: " + stats.harmless + "\n" +
-               "\tmalicious: " + stats.malicious + "\n" +
-               "\tsuspicious: " + stats.suspicious + "\n" +
-               "\ttimeout: " + stats.timeout + "\n" +
-               "\tundetected: " + stats.undetected + "\n"
+               "    harmless: " + stats.harmless + "\n" +
+               "    malicious: " + stats.malicious + "\n" +
+               "    suspicious: " + stats.suspicious + "\n" +
+               "    timeout: " + stats.timeout + "\n" +
+               "    undetected: " + stats.undetected + "\n"
 
-      // // virustotal API get IP information
-      // var config = {
-      //   method: 'get',
-      //   url: 'https://www.virustotal.com/api/v3/ip_addresses/' + destination_ip,
-      //   headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
-      // }
-      // var response = await axios(config);
+      // virustotal API get IP information
+      var config = {
+        method: 'get',
+        url: 'https://www.virustotal.com/api/v3/ip_addresses/' + destination_ip,
+        headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
+      }
+      var response = await axios(config);
 
-      // stats = reponse.data.data.attributes.last_analysis_stats
-      // console.log(stats)
-      // report = report + 
-      //          "virustotal_IP_analysis_stats: \n" +
-      //          "\tharmless: " + stats.harmless + "\n" +
-      //          "\tmalicious: " + stats.malicious + "\n" +
-      //          "\tsuspicious: " + stats.suspicious + "\n" +
-      //          "\ttimeout: " + stats.timeout + "\n" + 
-      //          "\tundetected: " + stats.undetected + "\n"
+      stats = response.data.data.attributes.last_analysis_stats
+      console.log(stats)
+      report = report + 
+               "virustotal_IP_analysis_stats: \n" +
+               "    harmless: " + stats.harmless + "\n" +
+               "    malicious: " + stats.malicious + "\n" +
+               "    suspicious: " + stats.suspicious + "\n" +
+               "    timeout: " + stats.timeout + "\n" + 
+               "    undetected: " + stats.undetected + "\n"
 
-      // // virustotal API get Domain information
-      // var config = {
-      //   method: 'get',
-      //   url: 'https://www.virustotal.com/api/v3/domains/' + url_domain,
-      //   headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
-      // }
-      // var response = await axios(config);
+      // virustotal API get Domain information
+      var config = {
+        method: 'get',
+        url: 'https://www.virustotal.com/api/v3/domains/' + url_domain,
+        headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
+      }
+      var response = await axios(config);
 
-      // stats = reponse.data.data.attributes.last_analysis_stats
-      // report = report + 
-      //          "virustotal_IP_analysis_stats: \n" +
-      //          "\tharmless: " + stats.harmless + "\n" +
-      //          "\tmalicious: " + stats.malicious + "\n" +
-      //          "\tsuspicious: " + stats.suspicious + "\n" +
-      //          "\ttimeout: " + stats.timeout + "\n" +
-      //          "\tundetected: " + stats.undetected + "\n"
+      stats = response.data.data.attributes.last_analysis_stats
+      report = report + 
+               "virustotal_IP_analysis_stats: \n" +
+               "    harmless: " + stats.harmless + "\n" +
+               "    malicious: " + stats.malicious + "\n" +
+               "    suspicious: " + stats.suspicious + "\n" +
+               "    timeout: " + stats.timeout + "\n" +
+               "    undetected: " + stats.undetected + "\n"
 
 
       // aggregate all reports
