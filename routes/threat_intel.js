@@ -177,7 +177,7 @@ router.post('/squid', function (req, res, next) {
                "IP_threatcrowd_votes: " + vote + "\n"
 
       // virusTotal API get URL information
-      const config = {
+      var config = {
         method: 'get',
         url: 'https://www.virustotal.com/api/v3/urls/' + url_b64,
         headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
