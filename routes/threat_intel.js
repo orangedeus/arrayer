@@ -187,10 +187,10 @@ router.post('/squid', function (req, res, next) {
       stats = reponse.data.data.attributes.last_analysis_stats
       report = report + 
                "virustotal_URL_analysis_stats: \n" +
-               "\tharmless: " + stats.harmless + "\n"
-               "\tmalicious: " + stats.malicious + "\n"
-               "\tsuspicious: " + stats.suspicious + "\n"
-               "\ttimeout: " + stats.timeout + "\n"
+               "\tharmless: " + stats.harmless + "\n" +
+               "\tmalicious: " + stats.malicious + "\n" +
+               "\tsuspicious: " + stats.suspicious + "\n" +
+               "\ttimeout: " + stats.timeout + "\n" +
                "\tundetected: " + stats.undetected + "\n"
 
       // virustotal API get IP information
@@ -204,10 +204,10 @@ router.post('/squid', function (req, res, next) {
       stats = reponse.data.data.attributes.last_analysis_stats
       report = report + 
                "virustotal_IP_analysis_stats: \n" +
-               "\tharmless: " + stats.harmless + "\n"
-               "\tmalicious: " + stats.malicious + "\n"
-               "\tsuspicious: " + stats.suspicious + "\n"
-               "\ttimeout: " + stats.timeout + "\n"
+               "\tharmless: " + stats.harmless + "\n" +
+               "\tmalicious: " + stats.malicious + "\n" +
+               "\tsuspicious: " + stats.suspicious + "\n" +
+               "\ttimeout: " + stats.timeout + "\n" + 
                "\tundetected: " + stats.undetected + "\n"
 
       // virustotal API get Domain information
@@ -221,10 +221,10 @@ router.post('/squid', function (req, res, next) {
       stats = reponse.data.data.attributes.last_analysis_stats
       report = report + 
                "virustotal_IP_analysis_stats: \n" +
-               "\tharmless: " + stats.harmless + "\n"
-               "\tmalicious: " + stats.malicious + "\n"
-               "\tsuspicious: " + stats.suspicious + "\n"
-               "\ttimeout: " + stats.timeout + "\n"
+               "\tharmless: " + stats.harmless + "\n" +
+               "\tmalicious: " + stats.malicious + "\n" +
+               "\tsuspicious: " + stats.suspicious + "\n" +
+               "\ttimeout: " + stats.timeout + "\n" +
                "\tundetected: " + stats.undetected + "\n"
 
 
