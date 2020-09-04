@@ -201,5 +201,52 @@ router.post('/squid', function (req, res, next) {
   });
 });
 
+router.post('/virustotal', function (req, res, next) {
+  data = req.body;
+  console.log(body);
+
+  var vt_responses = [];
+
+  const loop = async function(data, responses) {
+    // parse data
+    for (let i=0; i < data.length; i++) {
+      var source_ip = data[i].source.ip;
+      var destination_ip = data[i].destination.ip;
+      var destination_domain = data[i].destination.domain;
+      var url_domain = data[i].url.domain;
+      var url_full = data[i].url.full;
+      // optional: encode url to base64
+      var b = new Buffer(url_full)
+      var url_b64 = (b.toString('base64')).replace(/=/g, '')
+
+      const config = {
+        method: 'get',
+        url: 'https://www.virustotal.com/api/v3/urls/' + url_b64,
+        headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
+      }
+
+      var response = await axios(config);
+      responses.push(response.data.last_analysis_stats)
+    }
+    return responses
+  }
+
+  loop(data, vt_responses)
+  .then(r => {
+    // filename = "squid_" + formatted_date
+    // fs.appendFile("./reports/" + filename + ".txt", r, (err) => {
+    //   // throws an error, you could also catch it here
+    //   if (err) throw err;
+    //   // success case, the file was saved
+    //   console.log('Report saved!');
+    // });
+    // res.send('See report at http://10.150.0.7:3000/reports/'+ filename + '.txt')
+    res.send('Trying out virustotal API')
+  })
+  .catch(err => {
+    res.send(err)
+  });
+});
+
 
 module.exports = router
