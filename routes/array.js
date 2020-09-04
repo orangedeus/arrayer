@@ -14,22 +14,34 @@ router.get('/squid', (req, res, next) => {
 })
 
 router.post('/squid', function (req, res, next) {
+  // arr = req.body
+  // console.log(arr)
+  // json_resp = {}
+  // url_arr = []
+  // for (i = 0; i < arr.hits.length; i++) {
+  //   url = arr.hits[i]._source.url.full
+  //   domain = arr.hits[i]._source.url.domain
+  //   destination = arr.hits[i]._source.destination.domain
+  //   ip = arr.hits[i]._source.destination.ip
+  //   source = arr.hits[i]._source.source.ip
+  //   b = new Buffer(url)
+  //   urlb64 = (b.toString('base64')).replace(/=/g, '')
+  //   url_arr.push({ url: url, urlb64: urlb64, url_domain: domain, destination_ip: ip, destination_domain: destination, source_ip: source })
+  // };
+  // json_resp.array = url_arr
+  // json_resp.length = arr.hits.length
+  // res.type('json').send(json_resp)
+
   arr = req.body
   console.log(arr)
   json_resp = {}
-  url_arr = []
+  _source_arr = []
   for (i = 0; i < arr.hits.length; i++) {
-    url = arr.hits[i]._source.url.full
-    domain = arr.hits[i]._source.url.domain
-    destination = arr.hits[i]._source.destination.domain
-    ip = arr.hits[i]._source.destination.ip
-    source = arr.hits[i]._source.source.ip
-    b = new Buffer(url)
-    urlb64 = (b.toString('base64')).replace(/=/g, '')
-    url_arr.push({ url: url, urlb64: urlb64, url_domain: domain, destination_ip: ip, destination_domain: destination, source_ip: source })
+    _source = arr.hits[i]._source;
+    _source_arr.push(_source);
   };
-  json_resp.array = url_arr
-  json_resp.length = arr.hits.length
+  json_resp.data = _source_arr
+  json_resp.length = _source_arr.length
   res.type('json').send(json_resp)
 })
 
@@ -60,9 +72,6 @@ router.post('/pihole', function (req, res, next) {
   arr = req.body
   console.log(arr)
   json_resp = {}
-  hits_arr = []
-  ri_arr = []
-  answer_arr = []
   _source_arr = []
   for (i = 0; i < arr.hits.length; i++) {
     _source = arr.hits[i]._source;
@@ -71,14 +80,14 @@ router.post('/pihole', function (req, res, next) {
   json_resp.data = _source_arr
   json_resp.length = _source_arr.length
   res.type('json').send(json_resp)
-  // write to a new file named 2pac.txt
-  fs.writeFile('test_report.txt', JSON.stringify(json_resp), (err) => {
-    // throws an error, you could also catch it here
-    if (err) throw err;
+  // // write to a new file named 2pac.txt
+  // fs.writeFile('test_report.txt', JSON.stringify(json_resp), (err) => {
+  //   // throws an error, you could also catch it here
+  //   if (err) throw err;
 
-    // success case, the file was saved
-    console.log('Report saved!');
-  });
+  //   // success case, the file was saved
+  //   console.log('Report saved!');
+  // });
 })
 
 module.exports = router
