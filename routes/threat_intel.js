@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
   res.send('You\'ve come to the threat intel api')
 })
 
-router.post('/virustotal', function (req, res, next) {
+router.post('/pihole', function (req, res, next) {
   data = req.body;
   console.log(data);
   var reports = '';
@@ -75,6 +75,7 @@ router.post('/virustotal', function (req, res, next) {
     res.send(err)
   });
 });
-//router.post('/threat_crowd/ip')
+
+//router.post('/squid')
 
 module.exports = router
