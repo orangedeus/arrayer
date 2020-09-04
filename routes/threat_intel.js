@@ -118,10 +118,16 @@ router.post('/squid', function (req, res, next) {
                    "url_full: " + url_full + "\n" +
                    "url_b64: " + url_b64 + "\n"
 
-      // // query threatcrowd API
-      // var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + dns_question_name)
-      // report = report + 
-      //          "threatcrowd_votes: " + response.data.votes + "\n"
+      // query threatcrowd API for domain information
+      var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + url_domain)
+      report = report + 
+               "domain_threatcrowd_votes: " + response.data.votes + "\n"
+
+      // query threatcrowd API for IP information
+      var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?ip=' + destination_ip)
+      report = report + 
+               "IP_threatcrowd_votes: " + response.data.votes + "\n"
+
 
       // aggregate all reports
       console.log("iteration "+i)
