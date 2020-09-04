@@ -185,8 +185,11 @@ router.post('/squid', function (req, res, next) {
         url: 'https://www.virustotal.com/api/v3/urls/' + url_b64,
         headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
       }
+      console.log("---1")
       var response = await axios(config);
-      stats = reponse.data.data.attributes.last_analysis_stats
+      console.log(response)
+      var stats = response.data.data.attributes.last_analysis_stats
+      console.log("--2")
       console.log(stats)
       report = report + 
                "virustotal_URL_analysis_stats: \n" +

@@ -1,0 +1,64 @@
+REPORT GENERATED AT: 2020-09-04-10-51-23
+--------------------------------------------------
+source ip: 10.150.0.9
+destination_ip: 202.69.184.144
+destination_domain: au.download.windowsupdate.com
+url_domain au.download.windowsupdate.com
+url_full: http://au.download.windowsupdate.com/d/msdownload/update/software/defu/2020/04/mpsigstub_2f4fc0c4e204f2a430d0bfb9d9bb166c42f5d767.exe
+url_b64: aHR0cDovL2F1LmRvd25sb2FkLndpbmRvd3N1cGRhdGUuY29tL2QvbXNkb3dubG9hZC91cGRhdGUvc29mdHdhcmUvZGVmdS8yMDIwLzA0L21wc2lnc3R1Yl8yZjRmYzBjNGUyMDRmMmE0MzBkMGJmYjlkOWJiMTY2YzQyZjVkNzY3LmV4ZQ
+--------------------------------------------------
+source ip: 10.150.0.9
+destination_ip: 202.69.184.144
+destination_domain: au.download.windowsupdate.com
+url_domain au.download.windowsupdate.com
+url_full: http://au.download.windowsupdate.com/d/msdownload/update/software/defu/2020/04/mpsigstub_2f4fc0c4e204f2a430d0bfb9d9bb166c42f5d767.exe
+url_b64: aHR0cDovL2F1LmRvd25sb2FkLndpbmRvd3N1cGRhdGUuY29tL2QvbXNkb3dubG9hZC91cGRhdGUvc29mdHdhcmUvZGVmdS8yMDIwLzA0L21wc2lnc3R1Yl8yZjRmYzBjNGUyMDRmMmE0MzBkMGJmYjlkOWJiMTY2YzQyZjVkNzY3LmV4ZQ
+--------------------------------------------------
+source ip: 10.150.0.9
+destination_ip: 202.69.184.144
+destination_domain: au.download.windowsupdate.com
+url_domain au.download.windowsupdate.com
+url_full: http://au.download.windowsupdate.com/d/msdownload/update/software/defu/2020/04/mpsigstub_2f4fc0c4e204f2a430d0bfb9d9bb166c42f5d767.exe
+url_b64: aHR0cDovL2F1LmRvd25sb2FkLndpbmRvd3N1cGRhdGUuY29tL2QvbXNkb3dubG9hZC91cGRhdGUvc29mdHdhcmUvZGVmdS8yMDIwLzA0L21wc2lnc3R1Yl8yZjRmYzBjNGUyMDRmMmE0MzBkMGJmYjlkOWJiMTY2YzQyZjVkNzY3LmV4ZQ
+--------------------------------------------------
+source ip: 10.150.0.9
+destination_ip: 202.69.184.144
+destination_domain: au.download.windowsupdate.com
+url_domain au.download.windowsupdate.com
+url_full: http://au.download.windowsupdate.com/d/msdownload/update/software/defu/2020/04/mpsigstub_2f4fc0c4e204f2a430d0bfb9d9bb166c42f5d767.exe
+url_b64: aHR0cDovL2F1LmRvd25sb2FkLndpbmRvd3N1cGRhdGUuY29tL2QvbXNkb3dubG9hZC91cGRhdGUvc29mdHdhcmUvZGVmdS8yMDIwLzA0L21wc2lnc3R1Yl8yZjRmYzBjNGUyMDRmMmE0MzBkMGJmYjlkOWJiMTY2YzQyZjVkNzY3LmV4ZQ
+--------------------------------------------------
+source ip: 10.150.0.9
+destination_ip: 202.69.184.162
+destination_domain: au.download.windowsupdate.com
+url_domain au.download.windowsupdate.com
+url_full: http://au.download.windowsupdate.com/d/msdownload/update/software/defu/2020/04/mpsigstub_2f4fc0c4e204f2a430d0bfb9d9bb166c42f5d767.exe
+url_b64: aHR0cDovL2F1LmRvd25sb2FkLndpbmRvd3N1cGRhdGUuY29tL2QvbXNkb3dubG9hZC91cGRhdGUvc29mdHdhcmUvZGVmdS8yMDIwLzA0L21wc2lnc3R1Yl8yZjRmYzBjNGUyMDRmMmE0MzBkMGJmYjlkOWJiMTY2YzQyZjVkNzY3LmV4ZQ
+--------------------------------------------------
+source ip: 10.150.0.9
+destination_ip: 202.69.184.144
+destination_domain: au.download.windowsupdate.com
+url_domain au.download.windowsupdate.com
+url_full: http://au.download.windowsupdate.com/d/msdownload/update/software/defu/2020/04/mpsigstub_2f4fc0c4e204f2a430d0bfb9d9bb166c42f5d767.exe
+url_b64: aHR0cDovL2F1LmRvd25sb2FkLndpbmRvd3N1cGRhdGUuY29tL2QvbXNkb3dubG9hZC91cGRhdGUvc29mdHdhcmUvZGVmdS8yMDIwLzA0L21wc2lnc3R1Yl8yZjRmYzBjNGUyMDRmMmE0MzBkMGJmYjlkOWJiMTY2YzQyZjVkNzY3LmV4ZQ
+--------------------------------------------------
+source ip: 10.150.0.9
+destination_ip: 202.69.184.162
+destination_domain: au.download.windowsupdate.com
+url_domain au.download.windowsupdate.com
+url_full: http://au.download.windowsupdate.com/d/msdownload/update/software/defu/2020/04/mpsigstub_2f4fc0c4e204f2a430d0bfb9d9bb166c42f5d767.exe
+url_b64: aHR0cDovL2F1LmRvd25sb2FkLndpbmRvd3N1cGRhdGUuY29tL2QvbXNkb3dubG9hZC91cGRhdGUvc29mdHdhcmUvZGVmdS8yMDIwLzA0L21wc2lnc3R1Yl8yZjRmYzBjNGUyMDRmMmE0MzBkMGJmYjlkOWJiMTY2YzQyZjVkNzY3LmV4ZQ
+--------------------------------------------------
+source ip: 10.150.0.9
+destination_ip: 202.69.184.144
+destination_domain: au.download.windowsupdate.com
+url_domain au.download.windowsupdate.com
+url_full: http://au.download.windowsupdate.com/d/msdownload/update/software/defu/2020/04/mpsigstub_2f4fc0c4e204f2a430d0bfb9d9bb166c42f5d767.exe
+url_b64: aHR0cDovL2F1LmRvd25sb2FkLndpbmRvd3N1cGRhdGUuY29tL2QvbXNkb3dubG9hZC91cGRhdGUvc29mdHdhcmUvZGVmdS8yMDIwLzA0L21wc2lnc3R1Yl8yZjRmYzBjNGUyMDRmMmE0MzBkMGJmYjlkOWJiMTY2YzQyZjVkNzY3LmV4ZQ
+--------------------------------------------------
+source ip: 10.150.0.9
+destination_ip: 202.69.184.162
+destination_domain: au.download.windowsupdate.com
+url_domain au.download.windowsupdate.com
+url_full: http://au.download.windowsupdate.com/d/msdownload/update/software/defu/2020/04/mpsigstub_2f4fc0c4e204f2a430d0bfb9d9bb166c42f5d767.exe
+url_b64: aHR0cDovL2F1LmRvd25sb2FkLndpbmRvd3N1cGRhdGUuY29tL2QvbXNkb3dubG9hZC91cGRhdGUvc29mdHdhcmUvZGVmdS8yMDIwLzA0L21wc2lnc3R1Yl8yZjRmYzBjNGUyMDRmMmE0MzBkMGJmYjlkOWJiMTY2YzQyZjVkNzY3LmV4ZQ
