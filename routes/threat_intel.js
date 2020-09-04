@@ -241,6 +241,7 @@ router.post('/virustotal', function (req, res, next) {
     //   console.log('Report saved!');
     // });
     // res.send('See report at http://10.150.0.7:3000/reports/'+ filename + '.txt')
+    console.log(r)
     res.send('Trying out virustotal API')
   })
   .catch(err => {
