@@ -133,7 +133,7 @@ router.post('/squid', function (req, res, next) {
 
   loop(data, reports)
   .then(r => {
-    fs.appendFile("./reports" + "squid_" + formatted_date + ".txt", r, (err) => {
+    fs.appendFile("./reports/" + "squid_" + formatted_date + ".txt", r, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
       // success case, the file was saved
@@ -144,9 +144,6 @@ router.post('/squid', function (req, res, next) {
   .catch(err => {
     res.send(err)
   });
-
-
-
 });
 
 
