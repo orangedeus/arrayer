@@ -119,9 +119,9 @@ router.post('/squid', function (req, res, next) {
                    "url_b64: " + url_b64 + "\n"
 
       // query threatcrowd API for domain information
-      var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + url_domain)
-      report = report + 
-               "domain_threatcrowd_votes: " + response.data.votes + "\n"
+      // var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + url_domain)
+      // report = report + 
+      //          "domain_threatcrowd_votes: " + response.data.votes + "\n"
 
       // query threatcrowd API for IP information
       var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?ip=' + destination_ip)
