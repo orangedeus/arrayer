@@ -227,6 +227,8 @@ router.post('/virustotal', function (req, res, next) {
 
       var response = await axios(config);
       responses.push(response.data.data.last_analysis_stats)
+
+      console.log(response)
     }
     return responses
   }
