@@ -203,7 +203,7 @@ router.post('/squid', function (req, res, next) {
 
 router.post('/virustotal', function (req, res, next) {
   data = req.body;
-  console.log(body);
+  console.log(data);
 
   var vt_responses = [];
 
