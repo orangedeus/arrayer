@@ -188,7 +188,7 @@ router.post('/squid', function (req, res, next) {
       var stats = response.data.data.attributes.last_analysis_stats
       console.log(stats)
       report = report + 
-               "virustotal_URL_analysis_stats: \n" +
+               "virustotal_url_analysis_stats: \n" +
                "    harmless: " + stats.harmless + "\n" +
                "    malicious: " + stats.malicious + "\n" +
                "    suspicious: " + stats.suspicious + "\n" +
@@ -206,7 +206,7 @@ router.post('/squid', function (req, res, next) {
       stats = response.data.data.attributes.last_analysis_stats
       console.log(stats)
       report = report + 
-               "virustotal_IP_analysis_stats: \n" +
+               "virustotal_ip_analysis_stats: \n" +
                "    harmless: " + stats.harmless + "\n" +
                "    malicious: " + stats.malicious + "\n" +
                "    suspicious: " + stats.suspicious + "\n" +
@@ -223,7 +223,7 @@ router.post('/squid', function (req, res, next) {
 
       stats = response.data.data.attributes.last_analysis_stats
       report = report + 
-               "virustotal_IP_analysis_stats: \n" +
+               "virustotal_domain_analysis_stats: \n" +
                "    harmless: " + stats.harmless + "\n" +
                "    malicious: " + stats.malicious + "\n" +
                "    suspicious: " + stats.suspicious + "\n" +
