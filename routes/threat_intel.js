@@ -67,7 +67,7 @@ router.post('/pihole', function (req, res, next) {
       }
 
       report = report + 
-               "threatcrowd_votes: " + response.data.votes + "\n"
+               "threatcrowd_votes: " + vote + "\n"
 
       // aggregate all reports
       console.log(i)
@@ -79,13 +79,14 @@ router.post('/pihole', function (req, res, next) {
 
   loop(data, reports)
   .then(r => {
-    fs.appendFile("./reports/" + formatted_date + ".txt", r, (err) => {
+    filename = 'pihole_' + formatted_date
+    fs.appendFile("./reports/" + filename + ".txt", r, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
       // success case, the file was saved
       console.log('Report saved!');
     });
-    res.send('See report at http://10.150.0.7:3000/reports/'+formatted_date+'.txt')
+    res.send('See report at http://10.150.0.7:3000/reports/'+ filename + '.txt')
   })
   .catch(err => {
     res.send(err)
@@ -136,7 +137,7 @@ router.post('/squid', function (req, res, next) {
 
       // query threatcrowd API for domain information
       var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + url_domain)
-      var vote = (data)
+      var vote = ''
       switch(response.data.votes) {
         case -1: 
           vote = 'malicious'
@@ -156,7 +157,7 @@ router.post('/squid', function (req, res, next) {
 
       // query threatcrowd API for IP information
       var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?ip=' + destination_ip)
-      var vote = (data)
+      var vote = ''
       switch(response.data.votes) {
         case -1: 
           vote = 'malicious'
@@ -185,13 +186,14 @@ router.post('/squid', function (req, res, next) {
 
   loop(data, reports)
   .then(r => {
-    fs.appendFile("./reports/" + "squid_" + formatted_date + ".txt", r, (err) => {
+    filename = "squid_" + formatted_date
+    fs.appendFile("./reports/" + filename + ".txt", r, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
       // success case, the file was saved
       console.log('Report saved!');
     });
-    res.send('See report at http://10.150.0.7:3000/reports/'+ "squid_" + formatted_date + '.txt')
+    res.send('See report at http://10.150.0.7:3000/reports/'+ filename + '.txt')
   })
   .catch(err => {
     res.send(err)
