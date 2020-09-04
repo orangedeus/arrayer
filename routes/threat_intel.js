@@ -69,6 +69,23 @@ router.post('/pihole', function (req, res, next) {
 
       report = report + 
                "threatcrowd_votes: " + vote + "\n"
+      
+      // virustotal API get Domain information
+      var config = {
+        method: 'get',
+        url: 'https://www.virustotal.com/api/v3/domains/' + dns_question_name,
+        headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
+      }
+      var response = await axios(config);
+
+      stats = response.data.data.attributes.last_analysis_stats
+      report = report + 
+               "virustotal_domain_analysis_stats: \n" +
+               "    harmless: " + stats.harmless + "\n" +
+               "    malicious: " + stats.malicious + "\n" +
+               "    suspicious: " + stats.suspicious + "\n" +
+               "    timeout: " + stats.timeout + "\n" +
+               "    undetected: " + stats.undetected + "\n"
 
       // aggregate all reports
       console.log(i)
