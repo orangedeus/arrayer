@@ -50,6 +50,22 @@ router.post('/pihole', function (req, res, next) {
 
       // query threatcrowd API
       var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + dns_question_name)
+
+      var vote = ''
+      switch(response.data.votes) {
+        case -1: 
+          vote = 'malicious'
+          break;
+        case 0:
+          vote = 'neutral'
+          break;
+        case 1:
+          vote = 'non-malicious'
+          break;
+        default:
+          console.log('default');
+      }
+
       report = report + 
                "threatcrowd_votes: " + response.data.votes + "\n"
 
@@ -119,14 +135,44 @@ router.post('/squid', function (req, res, next) {
                    "url_b64: " + url_b64 + "\n"
 
       // query threatcrowd API for domain information
-      // var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + url_domain)
-      // report = report + 
-      //          "domain_threatcrowd_votes: " + response.data.votes + "\n"
+      var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + url_domain)
+      var vote = (data)
+      switch(response.data.votes) {
+        case -1: 
+          vote = 'malicious'
+          break;
+        case 0:
+          vote = 'neutral'
+          break;
+        case 1:
+          vote = 'non-malicious'
+          break;
+        default:
+          vote = 'no information'
+          console.log('default');
+      }
+      report = report + 
+               "domain_threatcrowd_votes: " + vote + "\n"
 
       // query threatcrowd API for IP information
       var response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?ip=' + destination_ip)
+      var vote = (data)
+      switch(response.data.votes) {
+        case -1: 
+          vote = 'malicious'
+          break;
+        case 0:
+          vote = 'neutral'
+          break;
+        case 1:
+          vote = 'non-malicious'
+          break;
+        default:
+          vote = 'no information'
+          console.log('default');
+      }
       report = report + 
-               "IP_threatcrowd_votes: " + response.data.votes + "\n"
+               "IP_threatcrowd_votes: " + vote + "\n"
 
 
       // aggregate all reports
