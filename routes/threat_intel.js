@@ -69,10 +69,6 @@ router.post('/virustotal', function (req, res, next) {
       // success case, the file was saved
       console.log('Report saved!');
     });
-    // const response = {
-    //   message: r
-    // }
-    // res.type('json').send(response)
     res.send('See report at http://10.150.0.7:3000/reports/'+formatted_date+'.txt')
   })
   .catch(err => {

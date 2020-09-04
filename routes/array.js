@@ -14,6 +14,18 @@ router.get('/squid', (req, res, next) => {
 })
 
 router.post('/squid', function (req, res, next) {
+  arr = req.body
+  console.log(arr)
+  json_resp = {}
+  _source_arr = []
+  for (i = 0; i < arr.hits.length; i++) {
+    _source = arr.hits[i]._source;
+    _source_arr.push(_source);
+  };
+  json_resp.data = _source_arr
+  json_resp.length = _source_arr.length
+  res.type('json').send(json_resp)
+
   // arr = req.body
   // console.log(arr)
   // json_resp = {}
@@ -32,17 +44,7 @@ router.post('/squid', function (req, res, next) {
   // json_resp.length = arr.hits.length
   // res.type('json').send(json_resp)
 
-  arr = req.body
-  console.log(arr)
-  json_resp = {}
-  _source_arr = []
-  for (i = 0; i < arr.hits.length; i++) {
-    _source = arr.hits[i]._source;
-    _source_arr.push(_source);
-  };
-  json_resp.data = _source_arr
-  json_resp.length = _source_arr.length
-  res.type('json').send(json_resp)
+  
 })
 
 router.post('/host', function (req, res, next) {
