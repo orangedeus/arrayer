@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var arrayRouter = require('./routes/array');
 var threatIntelRouter = require('./routes/threat_intel');
+var thiefRouter = require('./routes/thief');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/array', arrayRouter);
 app.use('/threat_intel', threatIntelRouter);
+app.use('/thief', thiefRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
