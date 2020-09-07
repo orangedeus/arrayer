@@ -13,6 +13,7 @@ router.get('/', function (req, res, next) {
 router.post('/check', function (req, res, next) {
     data = req.body;
     console.log(data);
+    res.send('42069');
 });
 
 module.exports = router
