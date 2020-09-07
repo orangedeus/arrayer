@@ -13,6 +13,17 @@ router.get('/', function (req, res, next) {
 router.post('/check', function (req, res, next) {
     data = req.body;
     console.log(data);
+    
+    var tar_commands, curl_commands;
+    tar_commands = data.tar;
+    curl_commands = data.curl;
+    
+    // check for compressed files
+    for (let i=0; i<tar_commands.hits.length; i++) {
+        console.log(tar_commands.hits[i].process.title);
+    }
+
+
     res.send('42069');
 });
 
