@@ -18,6 +18,7 @@ router.post('/check', function (req, res, next) {
   tar_commands = data.tar;
   curl_commands = data.curl;
 
+  var directory_pattern = /(\/)+[a-zA-Z0-9-_\/ ]*$/
   // check for compressed files
   console.log("iter\ttar compressed_file\tcurl_compressed_file\ttar host ip\tcurl host ip\tdestination_url");
   for (let i = 0; i < tar_commands.hits.length; i++) {
@@ -47,7 +48,7 @@ router.post('/check', function (req, res, next) {
       if (tar_host_ipv4 == curl_host_ipv4) {
         // extract the destination url
         var url_pattern = /(http|https):\/\/(([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])\.)*([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])(:[0-9]+)?/
-        
+        var directory = tar_process_title.match(directory_pattern)[0];
         var destination_url = curl_process_title.match(url_pattern)[0];
         console.log(i + "\t" + tar_compressed_file + "\t" + curl_compressed_file + "\t" + tar_host_ipv4 + "\t" + curl_host_ipv4 + "\t" + destination_url);
       }
