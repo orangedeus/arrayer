@@ -20,7 +20,12 @@ router.post('/check', function (req, res, next) {
     
     // check for compressed files
     for (let i=0; i<tar_commands.hits.length; i++) {
-        console.log(tar_commands.hits[i].process.title);
+        process_name = tar_commands.hits[i]._source.process.name;
+        process_title = tar_commands.hits[i]._source.process.title;
+        host_name = tar_commands.hits[i]._source.host.name;
+        host_ipv4 = tar_commands.hits[i]._source.host.ip[0];
+        host_ipv6 = tar_commands.hits[i]._source.host.ip[1];
+        host_os = tar_commands.hits[i]._source.host.os.name;
     }
 
 
