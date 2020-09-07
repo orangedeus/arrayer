@@ -46,8 +46,9 @@ router.post('/check', function (req, res, next) {
 
       if (tar_host_ipv4 == curl_host_ipv4) {
         // extract the destination url
-        var url_pattern = /(http|https):\/\/(([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])\.)*([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])(:[0-9]+)?$/
-        var destination_url = curl_process_title.match(url_pattern);
+        var url_pattern = /(http|https):\/\/(([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])\.)*([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])(:[0-9]+)?/
+        
+        var destination_url = curl_process_title.match(url_pattern)[0];
         console.log(i + "\t" + tar_compressed_file + "\t" + curl_compressed_file + "\t" + tar_host_ipv4 + "\t" + curl_host_ipv4 + "\t" + destination_url);
       }
     }
