@@ -19,7 +19,7 @@ router.post('/check', function (req, res, next) {
   curl_commands = data.curl;
 
   // check for compressed files
-  console.log("iter\ttar compressed_file\tcurl_compressed_file");
+  console.log("iter\ttar compressed_file\tcurl_compressed_file\thost ip");
   for (let i = 0; i < tar_commands.hits.length; i++) {
     tar_process_name = tar_commands.hits[i]._source.process.name;
     tar_process_title = tar_commands.hits[i]._source.process.title;
@@ -32,17 +32,17 @@ router.post('/check', function (req, res, next) {
     var compressed_file_pattern = /(\/)+[a-zA-Z0-9\-_\/ ]*(.tar.gz)/;
     tar_compressed_file = tar_process_title.match(compressed_file_pattern)[0];
     
-    for (let j = 0; j < curl_commands.hits; j++) {
-      curl_process_name = curl_commands.hits[i]._source.process.name;
-      curl_process_title = curl_commands.hits[i]._source.process.title;
-      curl_host_name = curl_commands.hits[i]._source.host.name;
-      curl_host_ipv4 = curl_commands.hits[i]._source.host.ip[0];
-      curl_host_ipv6 = curl_commands.hits[i]._source.host.ip[1];
-      curl_host_os = curl_commands.hits[i]._source.host.os.name;
+    for (let j = 0; j < curl_commands.hits.length; j++) {
+      curl_process_name = curl_commands.hits[j]._source.process.name;
+      curl_process_title = curl_commands.hits[j]._source.process.title;
+      curl_host_name = curl_commands.hits[j]._source.host.name;
+      curl_host_ipv4 = curl_commands.hits[j]._source.host.ip[0];
+      curl_host_ipv6 = curl_commands.hits[j]._source.host.ip[1];
+      curl_host_os = curl_commands.hits[j]._source.host.os.name;
 
       // search for any compressed files
-      var curl_compressed_file = curl_process_title.match(compressed_file_pattern);
-      console.log(i + "\t" + tar_compressed_file + "\t" + curl_compressed_file);
+      var curl_compressed_file = curl_process_title.match(compressed_file_pattern)[0];
+      console.log(i + "\t" + tar_compressed_file + "\t" + curl_compressed_file + "\t" + tar_host_ipv4);
     }
   }
 
