@@ -21,12 +21,12 @@ router.post('/check', function (req, res, next) {
   // check for compressed files
   console.log("iter\ttar compressed_file\tcurl_compressed_file");
   for (let i = 0; i < tar_commands.hits.length; i++) {
-    process_name = tar_commands.hits[i]._source.process.name;
-    process_title = tar_commands.hits[i]._source.process.title;
-    host_name = tar_commands.hits[i]._source.host.name;
-    host_ipv4 = tar_commands.hits[i]._source.host.ip[0];
-    host_ipv6 = tar_commands.hits[i]._source.host.ip[1];
-    host_os = tar_commands.hits[i]._source.host.os.name;
+    tar_process_name = tar_commands.hits[i]._source.process.name;
+    tar_process_title = tar_commands.hits[i]._source.process.title;
+    tar_host_name = tar_commands.hits[i]._source.host.name;
+    tar_host_ipv4 = tar_commands.hits[i]._source.host.ip[0];
+    tar_host_ipv6 = tar_commands.hits[i]._source.host.ip[1];
+    tar_host_os = tar_commands.hits[i]._source.host.os.name;
 
     // print if there are any compressed files
     var compressed_file_pattern = /(\/)+[a-zA-Z0-9\-_\/ ]*(.tar.gz)/;
