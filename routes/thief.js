@@ -26,6 +26,11 @@ router.post('/check', function (req, res, next) {
         host_ipv4 = tar_commands.hits[i]._source.host.ip[0];
         host_ipv6 = tar_commands.hits[i]._source.host.ip[1];
         host_os = tar_commands.hits[i]._source.host.os.name;
+
+        // print if there are any compressed files
+        var compressed_file_pattern = /(/)+[a-zA-Z0-9\-_/ ]*(.tar.gz)/;
+        compressed_file_match = process_title.match(compressed_file_pattern)[0];
+        console.log("compressed_file " + i + ": " + compressed_file_match);
     }
 
 
