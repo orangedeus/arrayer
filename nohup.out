@@ -496,3 +496,404 @@
 > arrayer@0.0.0 start /home/jpchanchico/arrayer
 > node ./bin/www
 
+
+> arrayer@0.0.0 start /home/jpchanchico/arrayer
+> node ./bin/www
+
+{
+  hits: [
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }, { _source: [Object] },
+    { _source: [Object] }
+  ]
+}
+[0mPOST /array/pihole [32m200 [0m19.134 ms - 6494[0m
+[
+  {
+    dns: {
+      question: [Object],
+      answers_count: 3,
+      answers: [Array],
+      resolved_ip: [Array]
+    },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: {
+      question: [Object],
+      answers: [Array],
+      resolved_ip: [Array],
+      answers_count: 3
+    },
+    source: { ip: '10.150.0.16' }
+  },
+  {
+    source: { ip: '10.150.0.16' },
+    dns: { answers_count: 0, question: [Object] }
+  },
+  {
+    source: { ip: '10.150.0.8' },
+    dns: { question: [Object], answers_count: 0 }
+  },
+  {
+    dns: {
+      answers: [Array],
+      answers_count: 2,
+      question: [Object],
+      resolved_ip: [Array]
+    },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: {
+      resolved_ip: [Array],
+      answers: [Array],
+      answers_count: 2,
+      question: [Object]
+    },
+    source: { ip: '10.150.0.16' }
+  },
+  {
+    dns: {
+      question: [Object],
+      resolved_ip: [Array],
+      answers_count: 2,
+      answers: [Array]
+    },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: {
+      answers: [Array],
+      resolved_ip: [Array],
+      question: [Object],
+      answers_count: 2
+    },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    source: { ip: '10.150.0.8' },
+    dns: {
+      question: [Object],
+      resolved_ip: [Array],
+      answers_count: 3,
+      answers: [Array]
+    }
+  },
+  {
+    source: { ip: '10.150.0.16' },
+    dns: {
+      question: [Object],
+      answers_count: 3,
+      answers: [Array],
+      resolved_ip: [Array]
+    }
+  },
+  {
+    dns: { answers_count: 0, question: [Object] },
+    source: { ip: '10.150.0.16' }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '10.150.0.15' }
+  },
+  {
+    source: { ip: '10.150.0.8' },
+    dns: { answers_count: 0, question: [Object] }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '10.150.0.16' }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: { answers_count: 0, question: [Object] },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: { answers_count: 0, question: [Object] },
+    source: { ip: '127.0.0.1' }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '127.0.0.1' }
+  },
+  {
+    source: { ip: '10.150.0.8' },
+    dns: { question: [Object], answers_count: 0 }
+  },
+  {
+    source: { ip: '10.150.0.8' },
+    dns: { question: [Object], answers_count: 0 }
+  },
+  {
+    dns: { answers_count: 0, question: [Object] },
+    source: { ip: '127.0.0.1' }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: { question: [Object], answers_count: 1, answers: [Array] },
+    source: { ip: '127.0.0.1' }
+  },
+  {
+    dns: { answers_count: 1, question: [Object], answers: [Array] },
+    source: { ip: '127.0.0.1' }
+  },
+  {
+    source: { ip: '10.150.0.15' },
+    dns: { answers_count: 0, question: [Object] }
+  }
+]
+datetime: 2020-09-04-18-02-42
+YOOOOOOOOOOOOOOO: 27
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+default
+10
+default
+11
+default
+12
+default
+13
+default
+14
+default
+[0mPOST /threat_intel/pihole [32m200 [0m27766.495 ms - 1022[0m
+{
+  hits: [
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] }
+  ]
+}
+[0mPOST /array/pihole [32m200 [0m1.979 ms - 2010[0m
+[
+  {
+    dns: { answers_count: 0, question: [Object] },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: { answers_count: 0, question: [Object] },
+    source: { ip: '127.0.0.1' }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '127.0.0.1' }
+  },
+  {
+    source: { ip: '10.150.0.8' },
+    dns: { question: [Object], answers_count: 0 }
+  },
+  {
+    source: { ip: '10.150.0.8' },
+    dns: { question: [Object], answers_count: 0 }
+  },
+  {
+    dns: { answers_count: 0, question: [Object] },
+    source: { ip: '127.0.0.1' }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: { question: [Object], answers_count: 1, answers: [Array] },
+    source: { ip: '127.0.0.1' }
+  },
+  {
+    dns: { answers_count: 1, question: [Object], answers: [Array] },
+    source: { ip: '127.0.0.1' }
+  },
+  {
+    source: { ip: '10.150.0.15' },
+    dns: { answers_count: 0, question: [Object] }
+  },
+  {
+    source: { ip: '10.150.0.16' },
+    dns: { question: [Object], answers_count: 0 }
+  },
+  {
+    dns: { answers_count: 0, question: [Object] },
+    source: { ip: '10.150.0.15' }
+  }
+]
+datetime: 2020-09-04-18-15-06
+YOOOOOOOOOOOOOOO: 14
+default
+0
+default
+1
+default
+2
+default
+[0mPOST /threat_intel/pihole [32m200 [0m6841.170 ms - 1022[0m
+[0mGET /reports/pihole_2020-09-04-11-34-06.txt [36m304 [0m7.508 ms - -[0m
+[0mGET /reports/pihole_2020-09-04-11-34-06.txt [36m304 [0m1.062 ms - -[0m
+[0mGET /reports/pihole_2020-09-04-11-36-39.txt [36m304 [0m1.569 ms - -[0m
+{
+  hits: [
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] },
+    { _source: [Object] }
+  ]
+}
+[0mPOST /array/pihole [32m200 [0m1.440 ms - 2977[0m
+[
+  {
+    dns: { answers_count: 0, question: [Object] },
+    source: { ip: '10.150.0.16' }
+  },
+  {
+    dns: { answers_count: 0, question: [Object] },
+    source: { ip: '10.150.0.15' }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '10.150.0.16' }
+  },
+  {
+    dns: { answers_count: 0, question: [Object] },
+    source: { ip: '10.150.0.16' }
+  },
+  {
+    source: { ip: '10.150.0.8' },
+    dns: { question: [Object], answers_count: 0 }
+  },
+  {
+    dns: { question: [Object], answers_count: 0 },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: {
+      answers: [Array],
+      resolved_ip: [Array],
+      question: [Object],
+      answers_count: 2
+    },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: {
+      answers_count: 2,
+      answers: [Array],
+      question: [Object],
+      resolved_ip: [Array]
+    },
+    source: { ip: '10.150.0.16' }
+  },
+  {
+    dns: {
+      answers: [Array],
+      question: [Object],
+      resolved_ip: [Array],
+      answers_count: 2
+    },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    dns: {
+      answers: [Array],
+      question: [Object],
+      answers_count: 2,
+      resolved_ip: [Array]
+    },
+    source: { ip: '10.150.0.8' }
+  },
+  {
+    source: { ip: '10.150.0.8' },
+    dns: {
+      question: [Object],
+      answers: [Array],
+      resolved_ip: [Array],
+      answers_count: 2
+    }
+  },
+  {
+    source: { ip: '10.150.0.16' },
+    dns: { question: [Object], answers_count: 0 }
+  }
+]
+datetime: 2020-09-04-18-26-58
+YOOOOOOOOOOOOOOO: 12
+default
+0
+default
+1
+default
+2
+3
+4
+5
+6
+7
+8
+9
+10
+default
+11
+[0mPOST /threat_intel/pihole [32m200 [0m17977.598 ms - 75[0m
+Report saved!
+[0mGET /reports/pihole_2020-09-04-18-26-58.txt [32m200 [0m5.207 ms - 3534[0m
+[0mGET /thief [33m404 [0m274.838 ms - 1072[0m
