@@ -19,7 +19,7 @@ router.post('/check', function (req, res, next) {
   curl_commands = data.curl;
 
   // check for compressed files
-  console.log("iter\ttar compressed_file\tcurl_compressed_file\thost ip");
+  console.log("iter\ttar compressed_file\tcurl_compressed_file\ttar host ip\tcurl host ip");
   for (let i = 0; i < tar_commands.hits.length; i++) {
     tar_process_name = tar_commands.hits[i]._source.process.name;
     tar_process_title = tar_commands.hits[i]._source.process.title;
@@ -42,7 +42,7 @@ router.post('/check', function (req, res, next) {
 
       // search for any compressed files
       var curl_compressed_file = curl_process_title.match(compressed_file_pattern)[0];
-      console.log(i + "\t" + tar_compressed_file + "\t" + curl_compressed_file + "\t" + tar_host_ipv4);
+      console.log(i + "\t" + tar_compressed_file + "\t" + curl_compressed_file + "\t" + tar_host_ipv4 + "\t" + curl_host_ipv4);
     }
   }
 
