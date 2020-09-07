@@ -24,6 +24,11 @@ router.post('/check', function (req, res, next) {
   var compressed_file_pattern = /(\/)+[a-zA-Z0-9\-_\/ ]*(.tar.gz)/;
   var url_pattern = /(http|https):\/\/(([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])\.)*([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])(:[0-9]+)?/
 
+  // get datetime 
+  var dt = dateTime.create();
+  var formatted_date = dt.format('Y-m-d-H-M-S');
+  console.log('datetime: ' + formatted_date);
+
   // check for compressed files
   var reports = 'REPORT GENERATED AT: ' + formatted_date + "\n"
   console.log(reports);
