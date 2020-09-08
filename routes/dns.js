@@ -106,7 +106,7 @@ router.post('/check', function (req, res, next) {
                      "answers count" + dns_answers_count + "\n"
             
             // TODO: check DNS answers for base64 encoded URLs
-            if (answers_count > 0) {
+            if (dns_answers_count > 0) {
                 base64pattern = /(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{4})/
                 report = report + "answer type\tanswer name\tanswer data\tbase64 decoded\n"
                 dns_answers = data.hits[i]._source.dns.answers;
@@ -140,6 +140,8 @@ router.post('/check', function (req, res, next) {
 
     exceed(registered_ip)
     .then(exceeded => {
+        console.log('===== EXCEEDED =====');
+        console.log(exceeded);
         if (!Object.keys(exceeded).length) {
             res.send("zero machines have exceeded set threshold.");
         } else {
@@ -159,12 +161,6 @@ router.post('/check', function (req, res, next) {
                 });
         }
     })
-    
-
-
-
-
-    res.send('Checking for DNS attacks');
 })
 
 module.exports = router
