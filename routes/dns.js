@@ -150,7 +150,7 @@ router.post('/check', function (req, res, next) {
             loop(exceeded)
                 .then(r => {
                     filename = 'dns_' + formatted_date;
-                    fs.appendFile("./reports/" + filename + ".txt", reports, (err) => {
+                    fs.appendFile("./reports/" + filename + ".txt", r, (err) => {
                         // throws an error, you could also catch it here
                         if (err) throw err;
                         // success case, the file was saved
