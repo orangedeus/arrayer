@@ -21,6 +21,7 @@ router.post('/check', function (req, res, next) {
         }
         registered_ip[source_ip] += 1;
     }
+    console.log(registered_ip);
     var exceeded = {};
     Object.keys(registered_ip).forEach(async function(key) {
         if (registered_ip[key] > 10) {
@@ -39,12 +40,17 @@ router.post('/check', function (req, res, next) {
                 }
               }
             var response = await axios('http://10.150.0.6:9200/asset_inventory/_search?', {method: "post",data: asset_query});
+            console.log(response);
             var asset_info = response.data.hits.hits[0]._source
+            console.log('ASSET INFO')
+            console.log(asset_info)
             exceeded[key] = asset_info;
         }
     });
 
-    
+    console.log('EXCEEDED')
+    console.log(exceeded)
+
     const loop = async function (exceeded) {
         var dt = dateTime.create();
         var formatted_date = dt.format('Y-m-d-H-M-S');
@@ -60,8 +66,6 @@ router.post('/check', function (req, res, next) {
             var dns_question = data.hits[i]._source.dns.question; 
             var dns_answers_count = data.hits[i]._source.dns.answers_count;
 
-            
-            
             // generate report
             report = report +
                      "source IP: " + exceeded[source.ip].ip + "\n" +
@@ -95,8 +99,13 @@ router.post('/check', function (req, res, next) {
                              decoded + "\n"
                 }
             }
+            console.log('SINGLE REPORT');
+            console.log(report);
+
             reports = reports + report;
         }
+        console.log('COMPLETED REPORTS');
+        console.log(reports);
         return reports;
     }
 
