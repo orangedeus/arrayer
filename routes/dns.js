@@ -99,13 +99,14 @@ router.post('/check', function (req, res, next) {
 
             // generate report
             report = report +
+                     "------------------------------------------------------------------------------------------------------"
                      "source IP: " + exceeded[source.ip].ip + "\n" +
                      "source OS: " + exceeded[source.ip].os + "\n" +
                      "source hostname: " + exceeded[source.ip].host + "\n" +
                      "destination IP: " + destination.ip + "\n" + 
                      "question name: " + dns_question.name + "\n" +
                      "question type: " + dns_question.type + "\n" +
-                     "answers count" + dns_answers_count + "\n"
+                     "answers count: " + dns_answers_count + "\n"
             
             // TODO: check DNS answers for base64 encoded URLs
             if (dns_answers_count > 0) {
