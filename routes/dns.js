@@ -54,7 +54,7 @@ router.post('/check', function (req, res, next) {
 
     const exceed = async function(registered_ip) {
         var exceeded = {};
-        Object.keys(registered_ip).forEach(function (key) {
+        Object.keys(registered_ip).forEach(async function (key) {
             if (registered_ip[key] > 10) {
                 // TODO: query asset inventory
                 var asset_query = {
