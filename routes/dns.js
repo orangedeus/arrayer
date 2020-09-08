@@ -21,35 +21,64 @@ router.post('/check', function (req, res, next) {
         }
         registered_ip[source_ip] += 1;
     }
+    console.log('===== REGISTERED IP =====');
     console.log(registered_ip);
-    var exceeded = {};
-    Object.keys(registered_ip).forEach(async function(key) {
-        if (registered_ip[key] > 10) {
-            // TODO: query asset inventory
-            var asset_query = {
-                "query": {
-                  "bool": {
-                    "must": [
-                      {
-                        "match": {
-                          "ip": key
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            var response = await axios('http://10.150.0.6:9200/asset_inventory/_search?', {method: "post",data: asset_query});
-            console.log(response);
-            var asset_info = response.data.hits.hits[0]._source
-            console.log('ASSET INFO')
-            console.log(asset_info)
-            exceeded[key] = asset_info;
-        }
-    });
+    // var exceeded = {};
+    // Object.keys(registered_ip).forEach(async function(key) {
+    //     if (registered_ip[key] > 10) {
+    //         // TODO: query asset inventory
+    //         var asset_query = {
+    //             "query": {
+    //               "bool": {
+    //                 "must": [
+    //                   {
+    //                     "match": {
+    //                       "ip": key
+    //                     }
+    //                   }
+    //                 ]
+    //               }
+    //             }
+    //           }
+    //         var response = await axios('http://10.150.0.6:9200/asset_inventory/_search?', {method: "post",data: asset_query});
+    //         console.log(response);
+    //         var asset_info = response.data.hits.hits[0]._source
+    //         console.log('ASSET INFO')
+    //         console.log(asset_info)
+    //         exceeded[key] = asset_info;
+    //     }
+    // });
 
-    console.log('EXCEEDED')
-    console.log(exceeded)
+    // console.log('EXCEEDED')
+    // console.log(exceeded)
+
+    const exceed = async function(registered_ip) {
+        var exceeded = {};
+        Object.keys(registered_ip).forEach(function (key) {
+            if (registered_ip[key] > 10) {
+                // TODO: query asset inventory
+                var asset_query = {
+                    "query": {
+                        "bool": {
+                            "must": [
+                                {
+                                    "match": {
+                                        "ip": key
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+                var response = await axios('http://10.150.0.6:9200/asset_inventory/_search?', { method: "post", data: asset_query });
+                var asset_info = response.data.hits.hits[0]._source
+                console.log('===== ASSET INFO =====')
+                console.log(asset_info)
+                exceeded[key] = asset_info;
+            }
+        });
+        return exceeded
+    }
 
     const loop = async function (exceeded) {
         var dt = dateTime.create();
@@ -99,34 +128,38 @@ router.post('/check', function (req, res, next) {
                              decoded + "\n"
                 }
             }
-            console.log('SINGLE REPORT');
+            console.log('===== SINGLE REPORT =====');
             console.log(report);
 
             reports = reports + report;
         }
-        console.log('COMPLETED REPORTS');
+        console.log('===== COMPLETED REPORTS =====');
         console.log(reports);
         return reports;
     }
 
-    if (!Object.keys(exceeded).length) {
-        res.send("zero machines have exceeded set threshold.");
-    } else {
-        loop(exceeded)
-        .then(r => {
-            filename = 'dns_' + formatted_date;
-            fs.appendFile("./reports/" + filename + ".txt", reports, (err) => {
-                // throws an error, you could also catch it here
-                if (err) throw err;
-                // success case, the file was saved
-                console.log('Report saved!');
-            });
-            res.send('See report at http://10.150.0.7:3000/reports/' + filename + '.txt')
-        })
-        .catch(err => {
-            console.log(err);
-        });
-    }
+    exceed(registered_ip)
+    .then(exceeded => {
+        if (!Object.keys(exceeded).length) {
+            res.send("zero machines have exceeded set threshold.");
+        } else {
+            loop(exceeded)
+                .then(r => {
+                    filename = 'dns_' + formatted_date;
+                    fs.appendFile("./reports/" + filename + ".txt", reports, (err) => {
+                        // throws an error, you could also catch it here
+                        if (err) throw err;
+                        // success case, the file was saved
+                        console.log('Report saved!');
+                    });
+                    res.send('See report at http://10.150.0.7:3000/reports/' + filename + '.txt')
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
+    })
+    
 
 
 
