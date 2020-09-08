@@ -99,7 +99,7 @@ router.post('/check', function (req, res, next) {
 
             // generate report
             report = report +
-                     "------------------------------------------------------------------------------------------------------\n"
+                     "------------------------------------------------------------------------------------------------------\n" + 
                      "source IP: " + exceeded[source.ip].ip + "\n" +
                      "source OS: " + exceeded[source.ip].os + "\n" +
                      "source hostname: " + exceeded[source.ip].host + "\n" +
