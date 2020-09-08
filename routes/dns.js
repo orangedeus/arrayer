@@ -52,6 +52,9 @@ router.post('/check', function (req, res, next) {
     // console.log('EXCEEDED')
     // console.log(exceeded)
 
+    var dt = dateTime.create();
+    var formatted_date = dt.format('Y-m-d-H-M-S');
+
     const exceed = async function(registered_ip) {
         var exceeded = {};
         for (const key of Object.keys(registered_ip)) {
@@ -81,8 +84,7 @@ router.post('/check', function (req, res, next) {
     }
 
     const loop = async function (exceeded) {
-        var dt = dateTime.create();
-        var formatted_date = dt.format('Y-m-d-H-M-S');
+        
         var reports = 'REPORT GENERATED AT: ' + formatted_date + "\n"
         
         for (let i=0; i<data.hits.length; i++) {
@@ -99,7 +101,7 @@ router.post('/check', function (req, res, next) {
             report = report +
                      "source IP: " + exceeded[source.ip].ip + "\n" +
                      "source OS: " + exceeded[source.ip].os + "\n" +
-                     "source hostname: " + exceeded[source.ip].hostname + "\n" +
+                     "source hostname: " + exceeded[source.ip].host + "\n" +
                      "destination IP: " + destination.ip + "\n" + 
                      "question name: " + dns_question.name + "\n" +
                      "question type: " + dns_question.type + "\n" +
