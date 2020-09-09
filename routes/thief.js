@@ -1,5 +1,6 @@
 var dateTime = require('node-datetime');
 var express = require('express')
+var urlRegex = require('url-regex');
 const fs = require('fs');
 const axios = require('axios');
 const { report } = require('../app');
@@ -9,6 +10,59 @@ router.use(express.json())
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.send('You\'ve come to the thief detection API')
+});
+
+router.post('/curl', function (req, res, next) {
+  data = req.body;
+
+  console.log(data);
+
+  const loop = async function() {
+      var malicious = [];
+      var results = [];
+      for (let i = 0; i < data.hits.length; i++) {
+          var source = data.hits[i]._source;
+          var curl_process_title = source.process.title;
+          var domain_regex = /[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/;
+          var url_match = curl_process_title.match(urlRegex());
+
+          if (!url_match) {
+              continue;
+          }
+          var domain_match = url_match[0].match(domain_regex);
+          var domain = domain_match[0];
+          console.log(domain);
+          try {
+              var tc_response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + domain); 
+          } catch(e) {
+              continue;
+          }
+
+          console.log(tc_response.data);
+
+          if (tc_response.data.votes == -1) {
+              malicious.push(data.hits[i]);
+              results.push(tc_response.data);
+          }
+      }
+      var obj = {
+          "m": malicious,
+          "r": results
+      }
+      return obj;
+  }
+  loop()
+  .then(obj => {
+      console.log(obj);
+      res.type('json').send({
+          "hits": obj.m,
+          "resp": obj.r,
+          "detected": obj.m.length
+      });
+  })
+  .catch(e => {
+      res.send(e);
+  });
 });
 
 router.post('/check', function (req, res, next) {
@@ -120,13 +174,10 @@ router.post('/check', function (req, res, next) {
         var dir_time = response.data.hits.hits[0]._source["@timestamp"];
         var dir_creation = response.data.hits.hits[0]._source.process.title;
         console.log(dir_creation);
-        try {
-          var tc_response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + destination_url)
-        } catch(e) {
-          res.send(e);
-        }
+        var tc_response = curl_commands.resp[j];
+        console.log(tc_response);
         var vote = ''
-        switch(tc_response.data.votes) {
+        switch(tc_response.votes) {
           case -1: 
             vote = 'malicious'
             break;
@@ -140,19 +191,19 @@ router.post('/check', function (req, res, next) {
             vote = 'no information'
             console.log('default');
         }
-        var b64url = Buffer.from(destination_url).toString('base64').replace(/=/g, '');
+        var b64url = Buffer.from(tc_response.subdomains[0]).toString('base64').replace(/=/g, '');
         console.log(b64url)
-        // var vt_config = {
-        //   method: 'get',
-        //   url: 'https://www.virustotal.com/api/v3/urls/' + b64url,
-        //   headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
-        // }
-        // try {
-        //   var vt_response = await axios(vt_config);
-        // } catch(e) {
-        //   res.send(e);
-        // }
-        // var stats = vt_response.data.data.attributes.last_analysis_stats
+        var vt_config = {
+          method: 'get',
+          url: 'https://www.virustotal.com/api/v3/urls/' + b64url,
+          headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
+        }
+        try {
+          var vt_response = await axios(vt_config);
+        } catch(e) {
+          res.send(e);
+        }
+        var stats = vt_response.data.data.attributes.last_analysis_stats
 
 
         // host name, host ip, host os, possibly created directory, possible exfiltrated file, possible exfiltration utilities, destination url
@@ -164,20 +215,18 @@ router.post('/check', function (req, res, next) {
                  "host OS: " + curl_host_os + "\n" +
                  "user: " + curl_user_name + "\n" +
                  "===== THREAT INTEL REPORT =====\n" +
-                 "url: " + destination_url + "\n" +
+                 "url: " + tc_response.subdomains[0] + "\n" +
                  "threatcrowd votes: " + vote + "\n" +
-                //  "virustotal_domain_analysis_stats: \n" +
-                //  "    harmless: " + stats.harmless + "\n" +
-                //  "    malicious: " + stats.malicious + "\n" +
-                //  "    suspicious: " + stats.suspicious + "\n" +
-                //  "    timeout: " + stats.timeout + "\n" +
-                //  "    undetected: " + stats.undetected + "\n" +
+                 "virustotal_domain_analysis_stats: \n" +
+                 "    harmless: " + stats.harmless + "\n" +
+                 "    malicious: " + stats.malicious + "\n" +
+                 "    suspicious: " + stats.suspicious + "\n" +
+                 "    timeout: " + stats.timeout + "\n" +
+                 "    undetected: " + stats.undetected + "\n" +
                  "===== EXFILTRATION DETAILS =====\n" +
                  "possible exfiltrated file: " + curl_compressed_file + "\n" +
                  "possible created directory: " + directory + "\n" +
-                 "possible directory creation: " + 
-                 "possible exfiltrated file: " + curl_compressed_file + "\n" +
-                 "destination URL: " + destination_url + "\n" +
+                 "destination URL: " + tc_response.subdomains[0] + "\n" +
                  "exfiltration utilities: " + curl_process_name + ", " + tar_process_name + ", " + response.data.hits.hits[0]._source.process.name + "\n" +
                  "===== LOG HISTORY =====\n" +
                  dir_time + " - " + dir_creation + "\n" +

@@ -1,5 +1,6 @@
 var dateTime = require('node-datetime');
 var express = require('express')
+var urlRegex = require('url-regex');
 const fs = require('fs');
 const axios = require('axios');
 var router = express.Router()
@@ -7,45 +8,6 @@ router.use(express.json())
 
 router.get('/', function (req, res, next) {
     res.send('You\'ve come to the thief detection API')
-});
-
-router.post('/curl', function (req, res, next) {
-    data = req.body;
-
-    const loop = async function() {
-        var malicious = [];
-        for (let i = 0; i < data.hits.length; i++) {
-            var source = data.hits[i]._source;
-            var curl_process_title = source.process.title;
-            var domain_regex = /[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/;
-            var domain_match = curl_process_title.match(domain_regex);
-
-            if (!domain_match) {
-                continue;
-            }
-            var domain = domain_match[0];
-            try {
-                var tc_response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + domain); 
-            } catch(e) {
-                continue;
-            }
-
-            if (tc_response.data.votes == -1) {
-                malicious.push(data.hits[i]);
-            }
-        }
-        return malicious;
-    }
-    loop()
-    .then(m => {
-        res.type('json').send({
-            "hits": m,
-            "detected": m.length
-        });
-    })
-    .catch(e => {
-        res.send(e);
-    });
 });
 
 router.post('/check', function (req, res, next) {
