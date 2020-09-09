@@ -120,8 +120,11 @@ router.post('/check', function (req, res, next) {
         var dir_time = response.data.hits.hits[0]._source["@timestamp"];
         var dir_creation = response.data.hits.hits[0]._source.process.title;
         console.log(dir_creation);
-
-        var tc_response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + destination_url)
+        try {
+          var tc_response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + destination_url)
+        } catch(e) {
+          res.send(e);
+        }
         var vote = ''
         switch(tc_response.data.votes) {
           case -1: 
@@ -137,14 +140,19 @@ router.post('/check', function (req, res, next) {
             vote = 'no information'
             console.log('default');
         }
-        
-        var vt_config = {
-          method: 'get',
-          url: 'https://www.virustotal.com/api/v3/domains/' + destination_url,
-          headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
-        }
-        var vt_response = await axios(vt_config);
-        var stats = vt_response.data.data.attributes.last_analysis_stats
+        var b64url = Buffer.from(destination_url).toString('base64').replace(/=/g, '');
+        console.log(b64url)
+        // var vt_config = {
+        //   method: 'get',
+        //   url: 'https://www.virustotal.com/api/v3/urls/' + b64url,
+        //   headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
+        // }
+        // try {
+        //   var vt_response = await axios(vt_config);
+        // } catch(e) {
+        //   res.send(e);
+        // }
+        // var stats = vt_response.data.data.attributes.last_analysis_stats
 
 
         // host name, host ip, host os, possibly created directory, possible exfiltrated file, possible exfiltration utilities, destination url
@@ -156,14 +164,14 @@ router.post('/check', function (req, res, next) {
                  "host OS: " + curl_host_os + "\n" +
                  "user: " + curl_user_name + "\n" +
                  "===== THREAT INTEL REPORT =====\n" +
-                 "domain : " + destination_url + "\n" +
+                 "url: " + destination_url + "\n" +
                  "threatcrowd votes: " + vote + "\n" +
-                 "virustotal_domain_analysis_stats: \n" +
-                 "    harmless: " + stats.harmless + "\n" +
-                 "    malicious: " + stats.malicious + "\n" +
-                 "    suspicious: " + stats.suspicious + "\n" +
-                 "    timeout: " + stats.timeout + "\n" +
-                 "    undetected: " + stats.undetected + "\n" +
+                //  "virustotal_domain_analysis_stats: \n" +
+                //  "    harmless: " + stats.harmless + "\n" +
+                //  "    malicious: " + stats.malicious + "\n" +
+                //  "    suspicious: " + stats.suspicious + "\n" +
+                //  "    timeout: " + stats.timeout + "\n" +
+                //  "    undetected: " + stats.undetected + "\n" +
                  "===== EXFILTRATION DETAILS =====\n" +
                  "possible exfiltrated file: " + curl_compressed_file + "\n" +
                  "possible created directory: " + directory + "\n" +

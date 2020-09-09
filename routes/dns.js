@@ -9,6 +9,45 @@ router.get('/', function (req, res, next) {
     res.send('You\'ve come to the thief detection API')
 });
 
+router.post('/curl', function (req, res, next) {
+    data = req.body;
+
+    const loop = async function() {
+        var malicious = [];
+        for (let i = 0; i < data.hits.length; i++) {
+            var source = data.hits[i]._source;
+            var curl_process_title = source.process.title;
+            var domain_regex = /[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/;
+            var domain_match = curl_process_title.match(domain_regex);
+
+            if (!domain_match) {
+                continue;
+            }
+            var domain = domain_match[0];
+            try {
+                var tc_response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + domain); 
+            } catch(e) {
+                continue;
+            }
+
+            if (tc_response.data.votes == -1) {
+                malicious.push(data.hits[i]);
+            }
+        }
+        return malicious;
+    }
+    loop()
+    .then(m => {
+        res.type('json').send({
+            "hits": m,
+            "detected": m.length
+        });
+    })
+    .catch(e => {
+        res.send(e);
+    });
+});
+
 router.post('/check', function (req, res, next) {
     data = req.body;
     console.log(data);
@@ -114,13 +153,13 @@ router.post('/check', function (req, res, next) {
                 console.log('default');
             }
             
-            var vt_config = {
-                method: 'get',
-                url: 'https://www.virustotal.com/api/v3/domains/' + dns_question.name,
-                headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
-            }
-            var vt_response = await axios(vt_config);
-            var stats = vt_response.data.data.attributes.last_analysis_stats;
+            // var vt_config = {
+            //     method: 'get',
+            //     url: 'https://www.virustotal.com/api/v3/domains/' + dns_question.name,
+            //     headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
+            // }
+            // var vt_response = await axios(vt_config);
+            // var stats = vt_response.data.data.attributes.last_analysis_stats;
             // generate report
             report = report +
                      "------------------------------------------------------------------------------------------------------\n" + 
@@ -132,12 +171,12 @@ router.post('/check', function (req, res, next) {
                      "===== THREAT INTEL REPORT =====\n" +
                      "domain: " + dns_question.name + "\n" +
                      "threatcrowd votes: " + vote + "\n" +
-                     "virustotal_domain_analysis_stats: \n" +
-                     "    harmless: " + stats.harmless + "\n" +
-                     "    malicious: " + stats.malicious + "\n" +
-                     "    suspicious: " + stats.suspicious + "\n" +
-                     "    timeout: " + stats.timeout + "\n" +
-                     "    undetected: " + stats.undetected + "\n" +
+                    //  "virustotal_domain_analysis_stats: \n" +
+                    //  "    harmless: " + stats.harmless + "\n" +
+                    //  "    malicious: " + stats.malicious + "\n" +
+                    //  "    suspicious: " + stats.suspicious + "\n" +
+                    //  "    timeout: " + stats.timeout + "\n" +
+                    //  "    undetected: " + stats.undetected + "\n" +
                      "===== DNS TRANSACTION =====\n" +
                      "question name: " + dns_question.name + "\n" +
                      "question type: " + dns_question.type + "\n" +
@@ -164,7 +203,7 @@ router.post('/check', function (req, res, next) {
                              "\t" + "type: " + dns_answers[j].type + "\n" +
                              "\t" + "name: " + dns_answers[j].name + "\n" +
                              "\t" + "data: " + dns_answers[j].data + "\n" +
-                             "\t" + "base64 decoded" + decoded + "\n"
+                             "\t" + "base64 decoded: " + decoded + "\n"
                 }
             }
             console.log('===== SINGLE REPORT =====');
