@@ -121,20 +121,60 @@ router.post('/check', function (req, res, next) {
         var dir_creation = response.data.hits.hits[0]._source.process.title;
         console.log(dir_creation);
 
+        var tc_response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + destination_url)
+        var vote = ''
+        switch(tc_response.data.votes) {
+          case -1: 
+            vote = 'malicious'
+            break;
+          case 0:
+            vote = 'neutral'
+            break;
+          case 1:
+            vote = 'non-malicious'
+            break;
+          default:
+            vote = 'no information'
+            console.log('default');
+        }
+        
+        var vt_config = {
+          method: 'get',
+          url: 'https://www.virustotal.com/api/v3/domains/' + destination_url,
+          headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
+        }
+        var vt_response = await axios(vt_config);
+        var stats = vt_response.data.data.attributes.last_analysis_stats
+
+
         // host name, host ip, host os, possibly created directory, possible exfiltrated file, possible exfiltration utilities, destination url
         report = report +
                  "----------------------------------------------------------------\n" +
+                 "===== HOST INFORMATION =====\n" +
                  "host name: " + curl_host_name + "\n" +
                  "host IP: " + curl_host_ipv4 + "\n" +
                  "host OS: " + curl_host_os + "\n" +
                  "user: " + curl_user_name + "\n" +
+                 "===== THREAT INTEL REPORT =====\n" +
+                 "domain : " + destination_url + "\n" +
+                 "threatcrowd votes: " + vote + "\n" +
+                 "virustotal_domain_analysis_stats: \n" +
+                 "    harmless: " + stats.harmless + "\n" +
+                 "    malicious: " + stats.malicious + "\n" +
+                 "    suspicious: " + stats.suspicious + "\n" +
+                 "    timeout: " + stats.timeout + "\n" +
+                 "    undetected: " + stats.undetected + "\n" +
+                 "===== EXFILTRATION DETAILS =====\n" +
                  "possible exfiltrated file: " + curl_compressed_file + "\n" +
                  "possible created directory: " + directory + "\n" +
-                 "possible directory creation: " + dir_time + " - " + dir_creation + "\n" +
+                 "possible directory creation: " + 
                  "possible exfiltrated file: " + curl_compressed_file + "\n" +
-                 "exfiltration utilities: " + curl_process_name + ", " + tar_process_name + ", " + response.data.hits.hits[0]._source.process.name + "\n" +
                  "destination URL: " + destination_url + "\n" +
-                 "curl details: " + curl_time + " - " + curl_process_title + "\n"
+                 "exfiltration utilities: " + curl_process_name + ", " + tar_process_name + ", " + response.data.hits.hits[0]._source.process.name + "\n" +
+                 "===== LOG HISTORY =====\n" +
+                 dir_time + " - " + dir_creation + "\n" +
+                 tar_time + " - " + tar_process_title + "\n" +
+                 curl_time + " - " + curl_process_title + "\n"
          
         // concatenate singleton report to reports string
         console.log("creating report");

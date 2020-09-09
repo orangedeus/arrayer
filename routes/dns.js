@@ -130,6 +130,7 @@ router.post('/check', function (req, res, next) {
                      "source hostname: " + exceeded[source.ip].host + "\n" +
                      "destination IP: " + destination.ip + "\n" +
                      "===== THREAT INTEL REPORT =====\n" +
+                     "domain: " + dns_question.name + "\n" +
                      "threatcrowd votes: " + vote + "\n" +
                      "virustotal_domain_analysis_stats: \n" +
                      "    harmless: " + stats.harmless + "\n" +
