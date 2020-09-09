@@ -96,24 +96,59 @@ router.post('/check', function (req, res, next) {
             var destination = data.hits[i]._source.destination;
             var dns_question = data.hits[i]._source.dns.question; 
             var dns_answers_count = data.hits[i]._source.dns.answers_count;
-
+            var tc_response = await axios.get('https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=' + dns_question.name);
+            
+            var vote = ''
+            switch(tc_response.data.votes) {
+            case -1: 
+                vote = 'malicious'
+                break;
+            case 0:
+                vote = 'neutral'
+                break;
+            case 1:
+                vote = 'non-malicious'
+                break;
+            default:
+                vote = 'no information'
+                console.log('default');
+            }
+            
+            var vt_config = {
+                method: 'get',
+                url: 'https://www.virustotal.com/api/v3/domains/' + dns_question.name,
+                headers: { 'x-apikey': '2770fe15cd6d812d08ee1bfb0c7019d7fccf1e4ce68b0c3c76739e3cc49e5adf' }
+            }
+            var vt_response = await axios(vt_config);
+            var stats = vt_response.data.data.attributes.last_analysis_stats;
             // generate report
             report = report +
                      "------------------------------------------------------------------------------------------------------\n" + 
+                     "===== HOST INFORMATION =====\n" +
                      "source IP: " + exceeded[source.ip].ip + "\n" +
                      "source OS: " + exceeded[source.ip].os + "\n" +
                      "source hostname: " + exceeded[source.ip].host + "\n" +
-                     "destination IP: " + destination.ip + "\n" + 
+                     "destination IP: " + destination.ip + "\n" +
+                     "===== THREAT INTEL REPORT =====\n" +
+                     "threatcrowd votes: " + vote + "\n" +
+                     "virustotal_domain_analysis_stats: \n" +
+                     "    harmless: " + stats.harmless + "\n" +
+                     "    malicious: " + stats.malicious + "\n" +
+                     "    suspicious: " + stats.suspicious + "\n" +
+                     "    timeout: " + stats.timeout + "\n" +
+                     "    undetected: " + stats.undetected + "\n" +
+                     "===== DNS TRANSACTION =====\n" +
                      "question name: " + dns_question.name + "\n" +
                      "question type: " + dns_question.type + "\n" +
                      "answers count: " + dns_answers_count + "\n"
             
             // TODO: check DNS answers for base64 encoded URLs
             if (dns_answers_count > 0) {
+                report = report + "answers:\n"
                 base64pattern = /(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{4})/
-                report = report + "answer type\tanswer name\tanswer data\tbase64 decoded\n"
                 dns_answers = data.hits[i]._source.dns.answers;
                 for (let j=0; j<dns_answers.length; j++) {
+                    report = report + (j + 1).toString() + ":\n"
                     var match = dns_answers[j].data.match(base64pattern);
                     if (match) {
                         // decode
@@ -125,10 +160,10 @@ router.post('/check', function (req, res, next) {
 
                     // generate report
                     report = report + 
-                             dns_answers[j].type + "\t" +
-                             dns_answers[j].name + "\t" +
-                             dns_answers[j].data + "\t" +
-                             decoded + "\n"
+                             "\t" + "type: " + dns_answers[j].type + "\n" +
+                             "\t" + "name: " + dns_answers[j].name + "\n" +
+                             "\t" + "data: " + dns_answers[j].data + "\n" +
+                             "\t" + "base64 decoded" + decoded + "\n"
                 }
             }
             console.log('===== SINGLE REPORT =====');

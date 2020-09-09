@@ -129,13 +129,12 @@ router.post('/check', function (req, res, next) {
                  "host OS: " + curl_host_os + "\n" +
                  "user: " + curl_user_name + "\n" +
                  "possible exfiltrated file: " + curl_compressed_file + "\n" +
-                 "destination URL: " + destination_url + "\n" +
-                 "curl timestamp: " + curl_time + "\n" +
-                 "curl command: " + curl_process_title + "\n" +
                  "possible created directory: " + directory + "\n" +
-                 "possible directory creation date: " + dir_time + "\n" +
-                 "possible directory creation command: " + dir_creation + "\n" +
-                 "exfiltration utilities: " + curl_process_name + ", " + tar_process_name + ", " + response.data.hits.hits[0]._source.process.name + "\n" 
+                 "possible directory creation: " + dir_time + " - " + dir_creation + "\n" +
+                 "possible exfiltrated file: " + curl_compressed_file + "\n" +
+                 "exfiltration utilities: " + curl_process_name + ", " + tar_process_name + ", " + response.data.hits.hits[0]._source.process.name + "\n" +
+                 "destination URL: " + destination_url + "\n" +
+                 "curl details: " + curl_time + " - " + curl_process_title + "\n"
          
         // concatenate singleton report to reports string
         console.log("creating report");

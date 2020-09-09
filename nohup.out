@@ -897,3 +897,7 @@ default
 Report saved!
 [0mGET /reports/pihole_2020-09-04-18-26-58.txt [32m200 [0m5.207 ms - 3534[0m
 [0mGET /thief [33m404 [0m274.838 ms - 1072[0m
+
+> arrayer@0.0.0 start /home/jpchanchico/arrayer
+> node ./bin/www
+
